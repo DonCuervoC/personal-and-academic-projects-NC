@@ -1,0 +1,1 @@
+create table COMPAGNIE.produits_supprimees as select * from COMPAGNIE.NACCPRODUITS  WHERE COMPAGNIE.NACCPRODUITS.NOFOUR = '';

@@ -1,0 +1,69 @@
+﻿<Window x:Class="WpfChantierApp1._2.ListeSousTraitants"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfChantierApp1._2"
+        mc:Ignorable="d"
+        Title="ListeSousTraitants" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+
+
+        <Grid>
+
+
+            <Grid>
+                <Label Content="Sous Traitant ID" Foreground="LavenderBlush" HorizontalAlignment="Left" Margin="54,76,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtBoxSousTraitantID" HorizontalAlignment="Left" Margin="159,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label Content="Domain Sous Traitant" Foreground="LavenderBlush" HorizontalAlignment="Left" Margin="33,109,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="txtBoxDomainSousTraitant" HorizontalAlignment="Left" Margin="159,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Label Content="Ouvrage ID" Foreground="LavenderBlush" HorizontalAlignment="Left" Margin="490,72,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="comboBoxOuvrageID" HorizontalAlignment="Left" Margin="606,76,0,0" Text="1" VerticalAlignment="Top" Width="120" SelectedValue="{Binding OuvrageID}" SelectedValuePath="OuvrageID">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="comboTxtOuvrageID" Text="{Binding OuvrageID}"/>
+                                <TextBlock Text=" - " />
+                                <TextBlock Text="{Binding NomOuvrage }"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Label Content="Date debut Sous Traitant" Foreground="LavenderBlush" HorizontalAlignment="Left" Margin="446,107,0,0" VerticalAlignment="Top"/>
+                <DatePicker x:Name="datePkrDebutSousTraitant" HorizontalAlignment="Left" Margin="605,110,0,0"  VerticalAlignment="Top" Width="120"/>
+                <Label Content="Date fin Sous Traitant" Foreground="LavenderBlush" HorizontalAlignment="Left" Margin="452,141,0,0" VerticalAlignment="Top"/>
+                <DatePicker x:Name="datePkrFinSousTraitant" HorizontalAlignment="Left" Margin="605,146,0,0"  VerticalAlignment="Top" Width="120"/>
+
+            </Grid>
+
+            <Button x:Name="btnAjouter"  Content="ajouter" HorizontalAlignment="Left" Margin="15,182,0,0" VerticalAlignment="Top"  Height="28" Width="157" Click="btnAjouter_Click"  />
+            <Button x:Name="btnSupprimer"  Content="supprimer" HorizontalAlignment="Left" Margin="625,182,0,0" VerticalAlignment="Top"  Height="28" Width="157" Click="btnSupprimer_Click"  />
+            <Button x:Name="btnModifier"  Content="modifier" HorizontalAlignment="Left" Margin="227,182,0,0" VerticalAlignment="Top"  Height="28" Width="156" Click="btnModifier_Click" />
+            <Button x:Name="btnEffacer" Content="effacer" HorizontalAlignment="Left" Margin="428,182,0,0" VerticalAlignment="Top"  Height="28" Width="156" Click="btnEffacer_Click" />
+            <Label Content="Liste Sous Traitants" HorizontalAlignment="Left" Margin="21,24,0,0" VerticalAlignment="Top" FontSize="16" Foreground="#FF2B58" FontWeight="Bold" Height="28" Width="354"/>
+
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF2D6D6C" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+
+        <ListView x:Name="ListViewSousTraitants" Margin="0,241,0,0" SelectionChanged="ListViewSousTraitants_SelectionChanged_1">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="SousTraitanID" Width="150"  DisplayMemberBinding="{Binding SousTraitantID }"/>
+                    <GridViewColumn Header="Domain Sous Traitant" Width="150"  DisplayMemberBinding="{Binding DomainSousTraitant }"/>
+                    <GridViewColumn Header="OuvrageID" Width="150"   DisplayMemberBinding="{Binding OuvrageID }"/>
+                    <GridViewColumn Header="Date Debut Sous Traitant" Width="150" DisplayMemberBinding="{Binding Date_Debut_SousTraitant }"/>
+                    <GridViewColumn Header="Date Fin Sous Traitant" Width="150" DisplayMemberBinding="{Binding Date_Fin_SousTraitant }"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+
+    </Grid>
+
+</Window>

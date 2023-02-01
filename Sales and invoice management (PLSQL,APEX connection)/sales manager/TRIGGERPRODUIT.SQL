@@ -1,0 +1,18 @@
+SET SERVEROUTPUT ON
+CREATE  OR REPLACE TRIGGER COMPAGNIE.triggerDeleteProduits
+AFTER UPDATE OF CODE ON  COMPAGNIE.NACCPRODUITS
+FOR EACH ROW 
+
+BEGIN
+
+    DBMS_OUTPUT.PUT_LINE('Modification en cascade de : ' ||:OLD.CODE);
+    -- update COMPAGNIE.NACCPRODUITS set CODE=:NEW.CODE where CODE=:OLD.CODE;
+	--inserer les employees a supprimer dans la table employees_gr803
+	INSERT INTO COMPAGNIE.produits_supprimees SELECT * FROM COMPAGNIE.NACCPRODUITS WHERE CODE=:OLD.CODE;
+	--Suppression des employees du departement_gr803
+	--DELETE FROM  COMPAGNIE.NACCPRODUITS WHERE CODE=:OLD.CODE;
+	
+END;
+/
+
+

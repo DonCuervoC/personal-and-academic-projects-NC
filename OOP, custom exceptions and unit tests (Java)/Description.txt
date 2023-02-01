@@ -1,0 +1,44 @@
+
+Situation
+
+Create a Java application that manages mixed teams formed for a given game.
+The game is made for teams of two members.
+Members must be registered with the league of the game.
+Each member is described by name and gender (M for male and F for female).
+The two members of a team must be of opposite sexes.
+During a competition, each team is entitled to a maximum of two replacements of its members.
+The replacement of a member must be made by a member of the same sex.
+
+Programming
+
+1. Create a Member class that allows you to create members affiliated with the league of the game in question. Each member being described by name and gender
+   To. Create an initializer constructor for the class
+	i. Provide an UnknownSexException exception class;
+	ii. The constructor must raise the UnknownSexException exception if the gender is different from M or F.
+	b. Add the methods getters, equals.
+
+2. Create a TestMember test class for the Member class.
+   To. Include 3 relevant tests without exception for the manufacturer.
+	b. Include constructor test with exception
+
+3. Create a Team class that lets you create two-member teams for competition.
+   To. Create an initializer constructor for the class.
+	i. Provide a NonCompliantTeamException exception class;
+	ii. The constructor must throw the NonConformingTeamException exception if the two members are of the same gender.
+	b. Add getters and setters.
+
+4. Create a TestTeam test class for the Team class.
+   To. Include a builder's test without exception.
+	b. Include a constructor test with exception.
+
+5. Add in the EquipeTest class, two tests for a method that will be added
+   to the Team class. This method will be used to replace a team member with a
+   other member. It could have the following form: replaceMember(member
+   outgoing, returning member)
+   To. The first test should have no exceptions.
+	b. The second test should allow for an exception:
+	NonCompliantReplacementException. This exception must be thrown by
+	The replaceMember(…) method if the outgoing member and the
+	returning member are not of the same sex, or if the outgoing member and the
+	returning are the same, or if the outgoing member is not a member of
+	the team.

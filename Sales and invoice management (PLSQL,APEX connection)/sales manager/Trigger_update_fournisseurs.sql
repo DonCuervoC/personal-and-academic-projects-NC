@@ -1,0 +1,16 @@
+SET SERVEROUTPUT ON
+create or replace TRIGGER triggerupdate_fournisseurs
+AFTER UPDATE OF NOFOUR ON COMPAGNIE.NACCFOURNISSEURS
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Modification en cascade de : ' ||:NEW.NOFOUR);
+    update COMPAGNIE.NACCPRODUITS set NOFOUR=:NEW.NOFOUR where NOFOUR=:OLD.NOFOUR;
+ END;
+ /
+ 
+ 
+ /*
+ UPDATE COMPAGNIE.NACCFOURNISSEURS SET NOFOUR = 55 WHERE NOFOUR = 12;
+ select * from compagnie.naccproduits;
+
+*/
