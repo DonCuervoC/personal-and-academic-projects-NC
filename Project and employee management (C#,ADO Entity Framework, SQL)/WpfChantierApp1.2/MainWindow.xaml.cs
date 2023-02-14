@@ -61,7 +61,6 @@ namespace WpfChantierApp1._2
                         // Instanciation de l'AdministrationInterface
                         AdministrationInter admin = new AdministrationInter(employeFound);
                         admin.ShowDialog();
-
                     }
 
                     else if ((btnChef.IsChecked == true) && (employeFound.PosteEmploi == "Superviseur")) //Souperviseur
@@ -88,6 +87,11 @@ namespace WpfChantierApp1._2
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show("Veuillez entrer les informations correctes");
+            }
+
         }
 
         // l'événement supprime les informations dans l'interface

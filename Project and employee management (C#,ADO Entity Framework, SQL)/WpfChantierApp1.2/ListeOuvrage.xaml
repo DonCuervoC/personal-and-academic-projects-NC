@@ -23,7 +23,7 @@
 
         <Grid Grid.Row="0">
             <Label Content="Ouvrage ID" Foreground="LavenderBlush" HorizontalAlignment="Left" Margin="54,71,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtBoxOuvrageID" HorizontalAlignment="Left" Margin="159,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" IsReadOnly="True" />
+            <TextBox x:Name="txtBoxOuvrageID" HorizontalAlignment="Left" Margin="159,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
             <Label Content="Nom Ouvrage" Foreground="LavenderBlush" HorizontalAlignment="Left" Margin="324,72,0,0" VerticalAlignment="Top"/>
             <TextBox x:Name="txtBoxNomOuvrage" HorizontalAlignment="Left" Margin="418,77,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
@@ -41,7 +41,6 @@
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
-
             </ComboBox>
 
             <Label Content="Debut Ouvrage" Foreground="LavenderBlush" HorizontalAlignment="Left" Margin="559,109,0,0" VerticalAlignment="Top"/>
@@ -90,7 +89,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="2">      
+        <Grid Grid.Row="2">
             <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" Text="Liste des travailleurs impliqués dans cet ouvrage " VerticalAlignment="Top" Foreground="#FF2B58" FontWeight="Bold" FontSize="16" Margin="13,0,0,0"/>
             <ListView x:Name="ListViewTravailleurs"   Height="190" Width="780" >
                 <ListView.View>
@@ -103,10 +102,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-
         </Grid>
-
-
     </Grid>
 </Window>
 

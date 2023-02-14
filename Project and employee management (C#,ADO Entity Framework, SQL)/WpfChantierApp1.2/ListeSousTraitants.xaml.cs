@@ -39,45 +39,51 @@ namespace WpfChantierApp1._2
         private void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
 
-            //string soustraitantIdCombo = comboBoxOuvrageID.SelectedValue.ToString();
-            //int OuvrageSelectedId = int.Parse(soustraitantIdCombo);
+            bool verifierOK = verifierChamps();
 
-            using (ProjetChantierEntities dbEntities = new ProjetChantierEntities())
+            if (verifierOK)
             {
-                Sous_Traitant derniereSousTraitant = dbEntities.Sous_Traitant.ToArray().LastOrDefault();
-
-                int lastnumber = derniereSousTraitant.SousTraitantID + 1;
-
-                //Ouvrage ouvrageCherche = dbEntities.Ouvrages.SingleOrDefault(x => x.OuvrageID == OuvrageSelectedId);
-
-                //  contrôle d'exception, vérifiez que tous les champs d'information de l'interface sont correctement remplis.
-                try
+                using (ProjetChantierEntities dbEntities = new ProjetChantierEntities())
                 {
-                    Sous_Traitant newSoustraitant = new Sous_Traitant()
-                    {
-                        SousTraitantID = lastnumber,
-                        DomainSousTraitant = txtBoxDomainSousTraitant.Text,
-                        Date_Debut_SousTraitant = datePkrDebutSousTraitant.SelectedDate.Value.ToShortDateString(),
-                        Date_Fin_SousTraitant = datePkrFinSousTraitant.SelectedDate.Value.ToShortDateString(),
-                        OuvrageID = int.Parse(comboBoxOuvrageID.SelectedValue.ToString()),
-                    };
+                    Sous_Traitant derniereSousTraitant = dbEntities.Sous_Traitant.ToArray().LastOrDefault();
+                    
+                    int lastnumber = derniereSousTraitant.SousTraitantID + 1;
 
-                    if (newSoustraitant != null)
+                    
+
+                    //  contrôle d'exception, vérifiez que tous les champs d'information de l'interface sont correctement remplis.
+                    try
                     {
-                        dbEntities.Sous_Traitant.Add(newSoustraitant);
-                        int resultat = dbEntities.SaveChanges();
-                        if (resultat > 0)
+                        Sous_Traitant newSoustraitant = new Sous_Traitant()
                         {
-                            this.AfficherSousTraitant();
-                            string message = $"Le Sous Traitant {newSoustraitant.SousTraitantID} a été enregistré dans le système";
-                            MessageBox.Show(message);
+                            SousTraitantID = lastnumber,
+                            DomainSousTraitant = txtBoxDomainSousTraitant.Text,
+                            Date_Debut_SousTraitant = datePkrDebutSousTraitant.SelectedDate.Value.ToShortDateString(),
+                            Date_Fin_SousTraitant = datePkrFinSousTraitant.SelectedDate.Value.ToShortDateString(),
+                            OuvrageID = int.Parse(comboBoxOuvrageID.SelectedValue.ToString()),
+                        };
+
+                        if (newSoustraitant != null)
+                        {
+                            dbEntities.Sous_Traitant.Add(newSoustraitant);
+                            int resultat = dbEntities.SaveChanges();
+                            if (resultat > 0)
+                            {
+                                this.AfficherSousTraitant();
+                                string message = $"Le Sous Traitant {newSoustraitant.SousTraitantID} a été enregistré dans le système";
+                                MessageBox.Show(message);
+                            }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString() + "\n\nATTENTION: \nVérifiez que tous les champs sont correctement remplis.  ");
+                    }
                 }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.ToString() + "\n\nATTENTION: \nVérifiez que tous les champs sont correctement remplis.  ");
-                }
+            }
+            else
+            {
+                MessageBox.Show("ATTENTION: \n Vérifiez que tous les champs sont correctement remplis");
             }
         }
 
@@ -112,18 +118,13 @@ namespace WpfChantierApp1._2
         {
             MessageBox.Show("btn Modifier");
 
+            bool verifierOK = verifierChamps();
             Sous_Traitant sousTraitantSelected = (Sous_Traitant)ListViewSousTraitants.SelectedItem;
 
-            if (sousTraitantSelected != null)
+            if (sousTraitantSelected != null && verifierOK)
             {
-
                 try
                 {
-                    if (string.IsNullOrEmpty(txtBoxDomainSousTraitant.Text) || comboBoxOuvrageID.SelectedValue == null || string.IsNullOrEmpty(datePkrDebutSousTraitant.Text) || string.IsNullOrEmpty(datePkrFinSousTraitant.Text))
-                    {
-                        throw new Exception("Veuillez remplir tous les champs requis.");
-                    }
-
                     using (ProjetChantierEntities dbEntities = new ProjetChantierEntities())
                     {
 
@@ -154,9 +155,10 @@ namespace WpfChantierApp1._2
                 { MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error); }
 
             }
-
-
-
+            else
+            {
+                MessageBox.Show("ATTENTION: \n Vérifiez que tous les champs sont correctement remplis");
+            }
         }
 
         private void btnEffacer_Click(object sender, RoutedEventArgs e)
@@ -167,8 +169,6 @@ namespace WpfChantierApp1._2
             datePkrDebutSousTraitant.Text = "";
             datePkrFinSousTraitant.Text = "";
         }
-
-
 
         private void ListViewSousTraitants_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
@@ -182,6 +182,21 @@ namespace WpfChantierApp1._2
                 comboBoxOuvrageID.Text = sous_traitant.OuvrageID.ToString();
             }
 
+        }
+
+        private bool verifierChamps()
+        {
+            bool bienRempli;
+
+            if(string.IsNullOrEmpty(txtBoxDomainSousTraitant.Text) || datePkrDebutSousTraitant.SelectedDate == null || datePkrFinSousTraitant.SelectedDate == null || comboBoxOuvrageID.SelectedIndex == -1)
+            {
+                bienRempli = false;
+            }
+            else
+            {
+                bienRempli = true;
+            }
+            return bienRempli;
         }
     }
 }

@@ -40,54 +40,63 @@ namespace WpfChantierApp1._2
 
         private void btnAjouter_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("btn ajouter");
+            bool verifierOk = verifierChamps();
             // rechercher et enregistrer l'identifiant de l'équipement qui a été sélectionné
-            string equipeIdCombo = comboBoxEquipeID.SelectedValue.ToString();
+
+            if (verifierOk)
+            {
+
+                string equipeIdCombo = comboBoxEquipeID.SelectedValue.ToString();
             int equipeSelectedId = int.Parse(equipeIdCombo);
 
-            using (ProjetChantierEntities dbEntities = new ProjetChantierEntities())
-            {
-             /* trouver le dernier enregistrement de l'employé dans la base de données, 
-                enregistrer son ID + 1 afin que nous puissions instancier notre nouvel objet en itérant
-                la valeur des enregistrements et faire correspondre les valeurs de la BD et de nos objets.  */
-                Employe lastEmploye = dbEntities.Employes.ToArray().LastOrDefault();
-               
-                Equipe equipeCherche = dbEntities.Equipes.SingleOrDefault(x => x.EquipeID == equipeSelectedId);
-
-                //  contrôle d'exception, vérifiez que tous les champs d'information de l'interface sont correctement remplis. 
-                try
+                using (ProjetChantierEntities dbEntities = new ProjetChantierEntities())
                 {
-                    // instance de notre nouvel objet 
-                    Employe newEmploye = new Employe()
-                    {
-                        EmployeID = lastEmploye.EmployeID + 1,
-                        Nom = txtBoxEmployeNom.Text,
-                        Prenom = txtBoxEmployePreNom.Text,
-                        DateEmbauche = datePkrDateEmbauche.SelectedDate.Value,
-                        Telephone = txtBoxTelephone.Text,
-                        EquipeID = int.Parse(comboBoxEquipeID.SelectedValue.ToString()),
-                        PosteEmploi = txtBoxPosteEmploi.Text,
-                        EmployeMotPasse = txtBoxMotPasse.Text,
-                        Equipe = equipeCherche,
-                    };
+                    /* trouver le dernier enregistrement de l'employé dans la base de données, 
+                       enregistrer son ID + 1 afin que nous puissions instancier notre nouvel objet en itérant
+                       la valeur des enregistrements et faire correspondre les valeurs de la BD et de nos objets.  */
+                    Employe lastEmploye = dbEntities.Employes.ToArray().LastOrDefault();
 
-                    if (newEmploye != null)
-                    {
-                        dbEntities.Employes.Add(newEmploye);
+                    Equipe equipeCherche = dbEntities.Equipes.SingleOrDefault(x => x.EquipeID == equipeSelectedId);
 
-                        int resultat = dbEntities.SaveChanges();
-                        if (resultat > 0)
+                    //  contrôle d'exception, vérifiez que tous les champs d'information de l'interface sont correctement remplis. 
+                    try
+                    {
+                        // instance de notre nouvel objet 
+                        Employe newEmploye = new Employe()
                         {
-                            this.AfficherEmployes();
-                            string message = $"L'employé {newEmploye.Nom} a été enregistré dans le système";
-                            MessageBox.Show(message);
+                            EmployeID = lastEmploye.EmployeID + 1,
+                            Nom = txtBoxEmployeNom.Text,
+                            Prenom = txtBoxEmployePreNom.Text,
+                            DateEmbauche = datePkrDateEmbauche.SelectedDate.Value,
+                            Telephone = txtBoxTelephone.Text,
+                            EquipeID = int.Parse(comboBoxEquipeID.SelectedValue.ToString()),
+                            PosteEmploi = txtBoxPosteEmploi.Text,
+                            EmployeMotPasse = txtBoxMotPasse.Text,
+                            Equipe = equipeCherche,
+                        };
+
+                        if (newEmploye != null)
+                        {
+                            dbEntities.Employes.Add(newEmploye);
+
+                            int resultat = dbEntities.SaveChanges();
+                            if (resultat > 0)
+                            {
+                                this.AfficherEmployes();
+                                string message = $"L'employé {newEmploye.Nom} a été enregistré dans le système";
+                                MessageBox.Show(message);
+                            }
                         }
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString() + "\n\nATTENTION: \nVérifiez que tous les champs sont correctement remplis.  ");
+                    }
                 }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.ToString() + "\n\nATTENTION: \nVérifiez que tous les champs sont correctement remplis.  ");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Attention  \n Vérifiez que tous les champs sont correctement remplis");
             }
         }
 
@@ -122,26 +131,29 @@ namespace WpfChantierApp1._2
         {
             MessageBox.Show("btn modifier");
 
+            bool verifierOK = verifierChamps();
+
             Employe employeSelected = (Employe)ListViewOuvriers.SelectedItem;
 
-            if (employeSelected != null)
+            if (employeSelected != null && verifierOK)
             {
                 using (ProjetChantierEntities dbEntities = new ProjetChantierEntities())
                 {
                     Employe emplModifier = dbEntities.Employes.FirstOrDefault(empl => empl.EmployeID == employeSelected.EmployeID); // **** LINQ  **** 
 
                     if (emplModifier != null)
-                    {                     
+                    {
                         emplModifier.DateEmbauche = datePkrDateEmbauche.SelectedDate.Value;
                         emplModifier.Nom = txtBoxEmployeNom.Text;
                         emplModifier.Prenom = txtBoxEmployePreNom.Text;
                         emplModifier.EmployeID = int.Parse(txtBoxEmployeID.Text);
                         emplModifier.Telephone = txtBoxTelephone.Text;
                         emplModifier.PosteEmploi = txtBoxPosteEmploi.Text;
+
+                        /* Reference object error when update */
                         emplModifier.EquipeID = int.Parse(comboBoxEquipeID.SelectedValue.ToString());
                         emplModifier.EmployeMotPasse = txtBoxMotPasse.Text;
 
-               
                         int resultat = dbEntities.SaveChanges();
                         if (resultat > 0)
                         {
@@ -151,6 +163,10 @@ namespace WpfChantierApp1._2
                         }
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("ATTENTION: \n Vérifiez que tous les champs sont correctement remplis");
             }
 
         }
@@ -180,6 +196,21 @@ namespace WpfChantierApp1._2
                 txtBoxPosteEmploi.Text = employe.PosteEmploi;
             }
 
+        }
+
+        private bool verifierChamps()
+        {
+            bool bienRempli;
+
+            if(string.IsNullOrEmpty(txtBoxEmployeNom.Text) || string.IsNullOrEmpty(txtBoxEmployePreNom.Text)  || datePkrDateEmbauche.SelectedDate == null || string.IsNullOrEmpty(txtBoxTelephone.Text) || comboBoxEquipeID.SelectedIndex == -1 || string.IsNullOrEmpty(txtBoxPosteEmploi.Text)  || string.IsNullOrEmpty(txtBoxMotPasse.Text))
+            {
+                bienRempli= false;
+            }
+            else
+            {
+                bienRempli= true;
+            }
+            return bienRempli;
         }
     }
 }
