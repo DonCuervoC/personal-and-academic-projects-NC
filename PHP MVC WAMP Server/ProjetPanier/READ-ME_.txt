@@ -1,0 +1,124 @@
+RAPPORT DE PROJET: 
+
+
+		RAPPORT DE FONCTIONNEMENT:
+
+
+				        Les fonctionnalités implémentés réussisses sont :
+						
+						Creation de la page Produits.
+						Creation Page Produit (image,description, prix, quantite disponible)
+						Les produits son listés  par ordre alphabétique.
+						Ajouter dans le panier de l'utilisateur relacioné avec la BD pour savoir s'il y la quantité disponible.	
+						Actualisation de la base de donnes avec la quantité disponible une fois le produit est diminue.
+
+      				         Les fonctionnalités non implémentés sont:
+
+						Ajouter au Panier, la quantité disponible du produit diminue  (dans la page Contrôleur  ligne 52
+							on a le code mais on a pas reussi a bien implémenter la sintaxis.
+						Supprimer un article    (la function effacerPanier  on l'avait travaillé mais on a pas
+							reussi a bien l'implementer page Contrôleur , ligne 62)
+						 Modifier la quantité	(la function modifierPanierAchat ne fonctionne pas (page Contrôleur , ligne
+							82 )		
+						
+
+
+		DU JAVASCRIPT:
+
+					On a créé  un pie de page déroulant  au moment de descendre sur la web
+					
+					
+
+
+
+
+
+		JOURNAL DE BORD:
+
+
+			October 31, 2022:       Réunion pour  choisir le project a réaliser  dans laquelle on a décidé  travailler
+					           avec le projet Panier.
+						
+					           "BrainStorming"  sur la manière d'aborder et concevoir le projet.
+			
+			November 4, 2022:	Début du project Panier  sur Visual-Code.
+						
+						Creation des pages PHP pour comencer la implementation.
+						
+						Recherche des images pour la table produits.
+						
+						Création du fichier CSS pour donner format à  notre page web.
+							
+						Création de la Base de données   sur MySQL.
+
+			November 7, 2022:	Continuation de la création de base de données.
+						
+						Creation de notre indexPanier et du template.
+
+			November 11,2022:	Une base de données "projetpanier" a été créée avec une table "produits" contenant 4 champs : 
+								ID produits, article, prix et stock.
+
+						
+						On a teste la connexion de notre basse de données avec notre projet
+
+						Creation de nos fichiers :
+								Controleurs, Images, Modèles,Styles, Vues
+
+			Dehors du Cours:	On a dédié environ deux seance par  semaine d'environ 4 heures par seance dans laquelle
+						on a créé tous nous pages pour faire fonctionner le cadre Modèle -Vue-Contrôleur.
+						La structuré  du project a été organisé de cette façon:
+							
+							Controleurs:	Controleurs.php
+							
+							Modeles: Manager.php, PanierManager.php, ProduitManager.php
+
+							Styles:		style.css
+							
+							Vues:	erreurPanier.php, template.php, vuePanier.php, vueProduit.php,
+								vueProduits.php, IndexPanier.php
+
+
+				
+			Commentaire Leonel Serrano:
+
+				Le project à été interessant et nourrisant des apprentissages. Pour ça qui concerne a moi, j'ai trouvé des
+				difficultes pour l'implementation du code PHP où on devait  faire les relaciones  Modèle -Vue Contrôleur, mais 
+				de la même façon j'ai  réalisé de l'importance à me donner plus de temps pour pratiquer sur cette même  genre
+			            de projects.
+
+			Commentaire Nelson Cuervo;
+
+				Dans mon expérience, ce projet m'a permis de mieux comprendre le fonctionnement du modèle MVC,
+			            ainsi que la syntaxe et la logique de PHP. Je trouve très intéressant et utile, d'appliquer les concepts de la POO
+			            tels que les classes et l'héritage pour établir des connexions aux bases de données en lien avec leurs propres requêtes. 
+			            Également, je pense que même si nous n'avons pas pu finir de mettre en œuvre toutes les fonctionnalités du projet, 
+			            nous avons compris la logique et nous sommes capables de faire face aux développements des futurs projets en utilisant
+			            le modèle MVC, Wamp, PHP, HTML, CSS et Javascript. Personnellement, c'était un projet très enrichissant pour mettre en
+			            œuvre et en pratique nos connaissances.
+
+
+
+
+
+
+
+
+
+
+							
+						
+						
+
+						
+						
+						
+							
+						
+
+			
+
+						
+
+
+			
+

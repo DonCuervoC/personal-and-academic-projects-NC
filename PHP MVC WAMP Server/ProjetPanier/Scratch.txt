@@ -1,0 +1,1021 @@
+$idProduit1, $quantiteP1, $prixP1,$idProduit2, $quantiteP2, $prixP2,
+
+
+************************************************
+
+
+        <!-- <form method="POST" action="indexPanier.php?action=ajoutPanier&id_produit_panier=<?$requete['id_produit']?>">
+
+                <label for="quantite"> quantité souhaitée </label> 
+                <input type="text" id="quantite" name="quantite"/></br>
+                <input type="submit" value="Ajouter au panier">
+        </form> -->
+
+
+***********************************************
+
+
+
+<p>id : <?= $donnees['id_produit'] ?>
+
+*********************************************
+
+    <form action="indexPanier.php?action=ajoutPanier&idProduit=<?$donnees['id_produit']?>" method="post" >
+            <label for="quantite"> quantité souhaitée </label>
+            <input type="text" id="quantite" name="quantite" /></br>
+            <input type="submit" value="Ajouter au panier">
+        </form>
+
+
+***********************************************
+
+        <a href="indexPanier.php?action=ajoutPanier&idProduitPanier=<?= $donnees['id_produit'] ?>
+                &nomProduitPanier=<?= $donnees['nom_produit'] ?>
+                &prixProduitPanier=<?= $donnees['prix'] ?>
+                &quantiteProduitPanier=<?= $donnees['quantite_disponible'] ?>
+            ">PRUEBA PRUEBA PRUEBA</a>
+
+
+******************************************
+
+            <form action="indexPanier.php?action=ajoutPanier&idProduitPanier=<?= $donnees['id_produit']?>
+            &nomProduitPanier=<?= $donnees['nom_produit'] ?>
+                &prixProduitPanier=<?= $donnees['prix'] ?>
+                &quantiteProduitPanier=<?= $donnees['quantite_disponible'] ?>" method="post">
+
+                quantité souhaitée : <input type="text" name="auteur"> </br>
+
+                <input type="submit" value="Ajouter au panier">
+            </form>
+
+
+
+C:\C#\ProjetWPF-Evaluation2-NelsonCuervo\NelsonCuervo_Projet_803\NelsonCuervo_Projet_803\Evaluation2.mdf
+
+
+
+
+        public int EmployeID { get; set; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Titre { get; set; }
+        public Nullable<System.DateTime> DateDeNaissance { get; set; }
+        public Nullable<System.DateTime> DateEmbauche { get; set; }
+        public string Adresse { get; set; }
+        public string Province { get; set; }
+        public string CodePostal { get; set; }
+        public string Pays { get; set; }
+        public string Telephone { get; set; }
+        public string Extension { get; set; }
+        public string Notes { get; set; }
+
+
+<GridViewColumn Header="Adresse" Width="100" DisplayMemberBinding="{Binding Adresse} "/>
+
+<GridViewColumn Header="Date Naiss." Width="150" DisplayMemberBinding="{Binding  DateNaissance, StringFormat='{}{0:dd/MM/yyyy}'}"/>
+
+
+  if (employeSelected != null)
+            {
+                using (Evaluation2Entities dbEntities = new Evaluation2Entities())
+                {
+
+                    string requete = @"SELECT * FROM Commandes JOINT Employes ON Commandes.EmployeID = Employes.EmployeID ORDER BY EmployeID;";
+
+                    SqlCommand cmd = new SqlCommand(requete, connection);
+
+                    ListViewCommandes.ItemsSource = cmd.ExecuteNonQuery().ToString();
+
+                    
+
+                }
+            }
+
+
+
+    public partial class Commande
+    {
+        public int CommandeID { get; set; }
+        public string ClientID { get; set; }
+        public Nullable<int> EmployeID { get; set; }
+        public Nullable<System.DateTime> DateCommande { get; set; }
+        public Nullable<System.DateTime> DateRequise { get; set; }
+        public Nullable<System.DateTime> DateEnvoi { get; set; }
+        public string AdresseEnvoi { get; set; }
+        public string VilleEnvoi { get; set; }
+        public string CodePostalEnvoi { get; set; }
+        public string PaysEnvoi { get; set; }
+    
+        public virtual Client Client { get; set; }
+        public virtual Employe Employe { get; set; }
+    }
+
+		
+	Client
+
+
+      ,[NomCompagnie]
+      ,[NomContact]
+      ,[TitreContact]
+      ,[Adresse]
+      ,[Province]
+      ,[CodePostal]
+      ,[Pays]
+      ,[Telephone]
+      ,[Fax]
+
+
+
+*************************************
+
+
+            int idCherche = employeSelected.EmployeID;
+
+            using (Evaluation2Entities dbEntities = new Evaluation2Entities())
+            {
+
+
+                string requete = @"SELECT * FROM Commandes JOIN Employes ON Commandes.EmployeID = @idCherche ORDER BY EmployeID;";
+
+                SqlCommand cmd = new SqlCommand(requete, connection);
+
+                ListViewCommandes.ItemsSource = cmd.ToString();
+
+            }
+
+
+**********************************************
+
+        public string ClientID { get; set; }
+        public string NomCompagnie { get; set; }
+        public string NomContact { get; set; }
+        public string TitreContact { get; set; }
+        public string Adresse { get; set; }
+        public string Province { get; set; }
+        public string CodePostal { get; set; }
+        public string Pays { get; set; }
+        public string Telephone { get; set; }
+        public string Fax { get; set; }
+
+
+********************************************
+
+public partial class ListeClients : Page
+    {
+        Evaluation2Entities db = new Evaluation2Entities();
+        public ListeClients()
+        {
+            InitializeComponent();
+            ListViewClients.ItemsSource = db.Clients.ToList();
+        }
+    }
+
+**********************************************************
+************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.Data.Entity.Migrations;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace CuervoNelson_Projet_803
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        // Client selectedClient = new Client();
+
+        public MainWindow()
+        {
+
+            InitializeComponent();
+            // AfficherEmployes();
+            AfficherProduits();
+            AfficherCategories();
+
+        }
+
+        private void lunchEmployes(object sender, RoutedEventArgs e)
+        {
+            AfficherEmployes();
+        }
+
+
+        private void ListViewEmployes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            Employe employeSelected = (Employe)ListViewEmployes.SelectedItem;
+
+            if (ListViewEmployes.SelectedItem is Employe employe)
+            {
+
+                txtBoxNom.Text = employe.Nom;
+                txtBoxPrenom.Text = employe.Prenom;
+                txtBoxAdresse.Text = employe.Adresse;
+                txtBoxCodePostal.Text = employe.CodePostal;
+                txtBoxExtension.Text = employe.Extension;
+                txtBoxNotes.Text = employe.Notes;
+                txtBoxProvince.Text = employe.Province;
+                txtBoxTitre.Text = employe.Titre;
+                txtBoxPays.Text = employe.Pays;
+                txtBoxTelephone.Text = employe.Telephone;
+                datePkrDateEmbauche.Text = employe.DateEmbauche.ToString();
+                datePkrDateNaissance.Text = employe.DateDeNaissance.ToString();
+            }
+
+            AfficherCommande(employeSelected);
+
+        }
+
+
+        private void AfficherEmployes()
+        {
+            using (Evaluation2Entities dbEntities = new Evaluation2Entities())
+            {
+                ListViewEmployes.ItemsSource = dbEntities.Employes.ToList();
+            }
+        }
+
+        private void AfficherProduits()
+        {
+            using (Evaluation2Entities dbEntities = new Evaluation2Entities())
+            {
+                comboBoxProduits.ItemsSource = dbEntities.Produits.ToList();
+            }
+
+        }
+
+        private void AfficherCategories()
+        {
+            using (Evaluation2Entities dbEntities = new Evaluation2Entities())
+            {
+                comboBoxCategories.ItemsSource = dbEntities.Categories.ToList();
+            }
+        }
+
+
+        private void AfficherCommande(Employe employeSelected)
+        {
+            int employeId = employeSelected.EmployeID;
+
+            using (Evaluation2Entities dbEntities = new Evaluation2Entities())
+            {
+                var query = from commande in dbEntities.Commandes
+                            where commande.EmployeID == employeId
+                            select new
+                            {
+                                CommandeID = commande.CommandeID,
+                                ClientID = commande.ClientID,
+                                EmployeID = commande.EmployeID,
+                                DateCommande = commande.DateCommande,
+                                DateRequise = commande.DateRequise,
+                                DateEnvoi = commande.DateEnvoi,
+                                AdresseEnvoi = commande.AdresseEnvoi,
+                                VilleEnvoi = commande.VilleEnvoi,
+                                CodePostalEnvoi = commande.CodePostalEnvoi,
+                                PaysEnvoi = commande.PaysEnvoi,
+                                Client = commande.Client,
+                                Employe = commande.Employe
+                            };
+
+                ListViewCommandes.ItemsSource = query.ToList();
+            }
+            // selectedClient = (Client)ListViewCommandes.SelectedItem;
+        }
+
+        private void btnEffacer_Click(object sender, RoutedEventArgs e)
+        {
+            txtBoxNom.Text = "";
+            txtBoxPrenom.Text = "";
+            txtBoxAdresse.Text = "";
+            txtBoxCodePostal.Text = "";
+            txtBoxExtension.Text = "";
+            txtBoxNotes.Text = "";
+            txtBoxProvince.Text = "";
+            txtBoxTitre.Text = "";
+            txtBoxPays.Text = "";
+            txtBoxTelephone.Text = "";
+            datePkrDateEmbauche.Text = "";
+            datePkrDateNaissance.Text = "";
+
+            ListViewCommandes.ItemsSource = "";
+        }
+
+        private void btnQuiter_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnModifier_Click(object sender, RoutedEventArgs e)
+        {
+            Employe employeSelected = (Employe)ListViewEmployes.SelectedItem;
+
+            if (employeSelected != null)
+            {
+                using (Evaluation2Entities dbEntities = new Evaluation2Entities())
+                {
+                    Employe emplModifier = dbEntities.Employes.FirstOrDefault(empl => empl.EmployeID == employeSelected.EmployeID); // **** LINQ  **** 
+
+                    if (emplModifier != null)
+                    {
+                        emplModifier.Nom = txtBoxNom.Text;
+                        emplModifier.Prenom = txtBoxPrenom.Text;
+                        emplModifier.Adresse = txtBoxAdresse.Text;
+                        emplModifier.CodePostal = txtBoxCodePostal.Text;
+                        emplModifier.Extension = txtBoxExtension.Text;
+                        emplModifier.Notes = txtBoxNotes.Text;
+                        emplModifier.Province = txtBoxProvince.Text;
+                        emplModifier.Titre = txtBoxTitre.Text;
+                        emplModifier.Pays = txtBoxPays.Text;
+                        emplModifier.Telephone = txtBoxTelephone.Text;
+                        emplModifier.DateEmbauche = datePkrDateEmbauche.SelectedDate.Value;
+                        emplModifier.DateDeNaissance = datePkrDateNaissance.SelectedDate.Value;
+
+                        int resultat = dbEntities.SaveChanges();
+                        if (resultat > 0)
+                        {
+                            this.AfficherEmployes();
+                            string message = $"L'employe {emplModifier.Nom} a ete modifie";
+                            MessageBox.Show(message);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+            Employe employeSelected = (Employe)ListViewEmployes.SelectedItem;
+
+            if (employeSelected != null)
+            {
+                using (Evaluation2Entities dbEntities = new Evaluation2Entities())
+                {
+                    Employe emplDeleted = dbEntities.Employes.SingleOrDefault(empl => empl.EmployeID == employeSelected.EmployeID);
+
+                    if (emplDeleted != null)
+                    {
+                        dbEntities.Employes.Remove(emplDeleted);
+                        int resultat = dbEntities.SaveChanges();
+                        if (resultat > 0)
+                        {
+                            this.AfficherEmployes();
+                            string message = $"L'employe {emplDeleted.Nom} a ete supprime";
+                            MessageBox.Show(message);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnSauvegarder_Click(object sender, RoutedEventArgs e)
+        {
+            Employe newEmploye = new Employe()
+            {
+                //EmployeID = Employes.LastOrDefault<Employe>().EmployeId + 1,
+                Nom = txtBoxNom.Text,
+                Prenom = txtBoxPrenom.Text,
+                Titre = txtBoxTitre.Text,
+                DateDeNaissance = datePkrDateNaissance.SelectedDate.Value,
+                DateEmbauche = datePkrDateEmbauche.SelectedDate.Value,
+                Adresse = txtBoxAdresse.Text,
+                Province = txtBoxProvince.Text,
+                CodePostal = txtBoxCodePostal.Text,
+                Pays = txtBoxPays.Text,
+                Telephone = txtBoxTelephone.Text,
+                Extension = txtBoxExtension.Text,
+                Notes = txtBoxNotes.Text,
+
+            };
+
+            using (Evaluation2Entities dbEntities = new Evaluation2Entities())
+            {
+                if (newEmploye != null)
+                {
+                    dbEntities.Employes.Add(newEmploye);
+
+                    int resultat = dbEntities.SaveChanges();
+                    if (resultat > 0)
+                    {
+                        this.AfficherEmployes();
+                        string message = $"L'employé {newEmploye.Nom} a été enregistré dans le système";
+                        MessageBox.Show(message);
+                    }
+                }
+            }
+        }
+
+        private void ListViewCommandes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ListeClients lc = new ListeClients();
+
+            // Client selectedClient = (Client)ListViewCommandes.SelectedItem;
+            // lc.AfficherClient(selectedClient);
+            lc.ShowDialog();
+        }
+    }
+}
+
+
+******************************************************
+
+
+
+
+CREATE TABLE [dbo].[Clients] (
+    [ClientId]     NCHAR (5)     NOT NULL,
+    [NomCompagnie] NVARCHAR (40) NOT NULL,
+    [NomContact]   NVARCHAR (30) NULL,
+    [TitreContact] NVARCHAR (30) NULL,
+    [Adresse]      NVARCHAR (60) NULL,
+    [Ville]        NVARCHAR (15) NULL,
+    [Province]     NVARCHAR (15) NULL,
+    [CodePostal]   NVARCHAR (10) NULL,
+    [Pays]         NVARCHAR (15) NULL,
+    [Telephone]    NVARCHAR (24) NULL,
+    [Fax]          NVARCHAR (24) NULL,
+    CONSTRAINT [PK_Clients] PRIMARY KEY CLUSTERED ([ClientId] ASC)
+);
+
+
+CREATE TABLE [dbo].[Commandes] (
+    [CommandeId]      INT           IDENTITY (1, 1) NOT NULL,
+    [ClientId]        NCHAR (5)     NULL,
+    [EmployeId]       INT           NULL,
+    [DateCommande]    DATETIME      NULL,
+    [DateRequise]     DATETIME      NULL,
+    [DateEnvoi]       DATETIME      NULL,
+    [EnvoyeVia]       INT           NULL,
+    [Cargaison]       MONEY         CONSTRAINT [DF_Commandes_Cargaison] DEFAULT ((0)) NULL,
+    [NomEnvoi]        NVARCHAR (40) NULL,
+    [AdresseEnvoi]    NVARCHAR (60) NULL,
+    [VilleEnvoi]      NVARCHAR (15) NULL,
+    [ProvinceEnvoi]   NVARCHAR (15) NULL,
+    [CodePostalEnvoi] NVARCHAR (10) NULL,
+    [PaysEnvoi]       NVARCHAR (15) NULL,
+    CONSTRAINT [PK_Commandes] PRIMARY KEY CLUSTERED ([CommandeId] ASC),
+    CONSTRAINT [FK_Commandes_Clients] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[Clients] ([ClientId]),
+    CONSTRAINT [FK_Commandes_Employes] FOREIGN KEY ([EmployeId]) REFERENCES [dbo].[Employes] ([EmployeId]),
+    CONSTRAINT [FK_Commandes_Expediteurs] FOREIGN KEY ([EnvoyeVia]) REFERENCES [dbo].[Expediteurs] ([ExpediteurId])
+);
+
+
+
+****************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public $listProduits = array();
+    //public $size = sizeof($listProduits);
+    // public $size = count($listProduits);
+
+
+
+
+        $listProduits [] = $id1;
+        $listProduits [] = $quant1;
+        $listProduits [] = $prix1;
+
+
+/*/**/*/*/*/*********************************************************************
+
+
+    // $listProduits [] = $idProduit;
+    // $listProduits [] = $quantite;
+    // $listProduits [] = $price;
+
+    // $listProduits.array_push($idProduit);
+
+    // array_push($listProduits, $idProduit);
+    // array_push($listProduits, $quantite);
+    // array_push($listProduits, $price);
+
+    // echo "\nID Produit : ". $idProduit . " ";
+    // echo gettype($idProduit );
+    // echo "\nQuantite : " . $quantite. "";
+    // echo gettype($quantite);
+    // echo "\nPrix : " . $price." ";
+    // echo gettype($price);
+
+    // echo " P1 array : " . $listProduits [0] . " "; 
+    // echo " P2 array : " . $listProduits [1] . " ";
+    // echo " P3 array : " . $listProduits [2] . " ";  
+
+
+
+
+***********************************************************************************
+
+
+    public function ajouterPanier()
+    {
+   
+        $bdd = $this->connexionBD();
+
+        $requete = $bdd->prepare("INSERT INTO panier (Date_modification, id_produit1, quantite_p1, prix1,
+                                                                          id_produit2, quantite_p2, prix2,
+                                                                          id_produit3, quantite_p3, prix3,
+                                                                          id_produit4, quantite_p4, prix4,
+                                                                          id_produit5, quantite_p5, prix5,
+                                                                          prixTotal)
+                                                                          VALUES(                                                                        
+                                                                          NOW(),
+                                                                         :id_produit1, :quantite_p1, :prix1,
+                                                                         :id_produit2, :quantite_p2, :prix2,
+                                                                         :id_produit3, :quantite_p3, :prix3,
+                                                                         :id_produit4, :quantite_p4, :prix4,
+                                                                         :id_produit5, :quantite_p5, :prix5,
+                                                                         :prixTotal)");
+
+        $requete->execute(array(
+
+            // 'id_produit1' => getProduit1(),
+            // 'quantite_p1'=>$quantiteP1,
+            // 'prix1'=>$prixP1,
+            // 'id_produit2'=>   $idProduit2,
+            // 'quantite_p2'=> $quantiteP2,
+            // 'prix2'=>  $prixP2,
+            // 'id_produit3'=> $idProduit3,
+            // 'quantite_p3'=>$quantiteP3,
+            // 'prix3'=> $prixP3,
+            // 'id_produit4'=> $idProduit4,
+            // 'quantite_p4'=>  $quantiteP4,
+            // 'prix4'=> $prixP4,
+            // 'id_produit5'=> $idProduit5,
+            // 'quantite_p5'=> $quantiteP5,
+            // 'prix5'=>$quantiteP5,
+            // 'prixTotal'=> $total,
+
+        ));
+
+        return $requete;
+    }
+
+
+
+*****************************************************************************
+
+        $quantiteSelec = $_POST['quantiteSelectione'];
+
+        echo $quantiteSelec . "</br>";
+
+        if (isset($_GET['idProduitPanier'])) {
+            //     $_GET['nomProduitPanier']; $_GET['prixProduitPanier']; $_GET['quantiteProduitPanier']; 
+            // $_GET['quantiteSelectione'];
+
+            $nombreProduit = $_GET['nomProduitPanier'];
+            $numIdProduit = $_GET['idProduitPanier'];
+            $quantiteDisponible = $_GET['quantiteProduitPanier'];
+            $prix = $_GET['prixProduitPanier'];
+
+            // echo $nombreProduit . "</br>";
+            // echo $numIdProduit  . "</br>";
+            // echo $quantiteDisponible . "</br>";
+            // echo $prix . "</br>";
+
+
+            // initialiserList($numIdProduit,$quantite,$prix);
+            // addList($nombreProduit, $numIdProduit, $quantiteDisponible, $prix, $quantiteSelec);
+
+            // printListProduits();
+            // setProduit1($numeroIdProducto,$nombre,$precio,$cantidad);
+            // echo ('idProduitPanier '. $numIdProduit);
+            // echo ('nombre '.  $nombre);
+            // echo ('precio '. $prix);
+            // echo ('cantidad '.$cantidad);
+            // printListProduits();
+
+
+
+
+***************************************************
+
+
+
+
+<?php
+// require_once("PanierManager.php");
+
+// busco el codigo de la pagina controlador y llamo a las funciones que estan en el 
+require("Controleurs/controleurs.php");
+
+if (isset($_GET['action'])) {
+
+    /********************************/
+    if (($_GET['action'] == 'produits')) {
+
+        if (isset($_GET['idProduit'])) {
+
+            afficherProduit($_GET['idProduit']);
+        } else {
+            afficherProduits();
+        }
+    }
+    /********************************/
+    if (($_GET['action'] == 'showPanier')) {
+
+        //echo"Buena papa";
+        if (isset($_GET['idPanier'])) {
+            afficherPanier($_GET['idPanier']);
+        } else {
+
+            //echo "Id panier no disponible ";
+            erreurPanier();
+        }
+    }
+    /********************************/
+    if ((($_GET['action'] == 'ajoutPanier'))) {
+
+        // $quantite = $_POST['quantiteSelectione'];
+        // echo "Quantite :  ". $quantite;
+
+        if (isset($_GET['idProduitPanier'])) {
+
+
+            $nombreProduit = $_GET['nomProduitPanier'];
+            $numIdProduit = $_GET['idProduitPanier'];
+            $quantiteDisponible = $_GET['quantiteProduitPanier'];
+            $prix = $_GET['prixProduitPanier'];
+            $quantite = $_POST['quantiteSelectione'];
+
+
+            // echo $nombreProduit . "</br>";
+            // echo $numIdProduit  . "</br>";
+            // echo $quantiteDisponible . "</br>";
+            // echo $prix . "</br>";
+            // echo "Quantite :  " . $quantite;
+
+            //    addList($numIdProduit,$quantiteDisponible,$prix,$quantite);
+
+        } else {
+            echo "error";
+        }
+    } else {
+        afficherProduits();
+    }
+    /********************************/
+} else {
+    afficherProduits();
+}
+
+*********************************************************************
+
+
+<label> Label nom : <?php print  $nomPr ?> </label> </br>
+
+<?php
+
+    echo "Nom : ". $nomPr . "</br>";
+    echo gettype($nomPr). "</br>";
+
+    echo "ID : " .$idProduit  . "</br>";
+    echo gettype($idProduit). "</br>";
+
+    echo "Quanti dispo : " .$quantDispo . "</br>";
+    echo gettype($quantDispo). "</br>";
+
+    echo "Prix : ".$price . "</br>";
+    echo gettype($price). "</br>";
+
+    echo "Quantite :  " . $quantiSelec. "</br>" ;
+    echo gettype($quantiSelec). "</br>";
+
+?>
+
+</div>
+
+
+
+****************************************************************************
+
+
+            // 'id_produit1' => getProduit1(),
+            // 'quantite_p1'=>$quantiteP1,
+            // 'prix1'=>$prixP1,
+            // 'id_produit2'=>   $idProduit2,
+            // 'quantite_p2'=> $quantiteP2,
+            // 'prix2'=>  $prixP2,
+            // 'id_produit3'=> $idProduit3,
+            // 'quantite_p3'=>$quantiteP3,
+            // 'prix3'=> $prixP3,
+            // 'id_produit4'=> $idProduit4,
+            // 'quantite_p4'=>  $quantiteP4,
+            // 'prix4'=> $prixP4,
+            // 'id_produit5'=> $idProduit5,
+            // 'quantite_p5'=> $quantiteP5,
+            // 'prix5'=>$quantiteP5,
+            // 'prixTotal'=> $total,
+
+
+
+
+******************************************************************************
+
+        <p>Id panier : <?= $donnees['id_panier'] ?> </p> </br>
+        <p>Date Modification : <?= $donnees['Date_modification'] ?> </p> </br>
+        <p>Id produit : <?= $donnees['id_prod'] ?> </p> </br>
+        <p>Nom produit : <?= $donnees['nom_produit'] ?> </p> </br>
+        <p>Qantite disponible : <?= $donnees['quantite_p'] ?> </p> </br>
+        <p>Quantite selectione : <?= $donnees['quantite_Selectione'] ?> </p> </br>
+        <p>Prix unitaire : <?= $donnees['prix'] ?> </p> </br>
+        <p>prix Total : <?= $donnees['prixTotal'] ?> </p> </br>
+
+
+
+*********************************************************************************
+
+    // public $nomPr, $idProduit1, $quantiteP1, $prixP1, $prixTotal;
+
+
+    // public function setProduit1($nomProdu, $id1, $quant1, $prix1)
+    // {
+    //     $this->nomPr = $nomProdu;
+    //     $this->idProduit1 =  $id1;
+    //     $this->quantiteP1 =  $quant1;
+    //     $this->prixP1 =  $prix1;
+    //     $prixTotal = $quant1 * $prix1;
+    // }
+
+    //public function getProduit1(){return $this->idProduit1;}
+
+    /*
+        public function getProduits(){
+
+        //1. conexion a la base de datos
+        $bdd = $this->connexionBD();
+     
+        $requete = $bdd->query('SELECT * FROM produits ORDER BY nom_produit ASC');
+     
+     return $requete;
+     
+     } */
+
+
+*****************************************************************************
+
+ACTUALIZACION LUNES 11 / 14 // 2022  9:18 pm  index panier
+
+<?php
+// require_once("PanierManager.php");
+
+// busco el codigo de la pagina controlador y llamo a las funciones que estan en el 
+require("Controleurs/controleurs.php");
+
+if (isset($_GET['action'])) {
+
+    /********************************/
+    if (($_GET['action'] == 'produits')) {
+
+        if (isset($_GET['idProduit'])) {
+
+            afficherProduit($_GET['idProduit']);
+        } else {
+            afficherProduits();
+        }
+    }
+    /********************************/
+    if (($_GET['action'] == 'showPanier')) {
+
+        afficherPanier();
+        // echo"Buena papa";
+        // if (isset($_GET['id_panier'])) {
+            
+        //     afficherPanier();
+
+        // } else {
+
+        //     //echo "Id panier no disponible ";
+        //     erreurPanier();
+        // }
+    }
+    /********************************/
+    if ((($_GET['action'] == 'ajoutPanier'))) {
+
+        // $quantite = $_POST['quantiteSelectione'];
+        // echo "Quantite :  ". $quantite;
+
+        if (isset($_GET['idProduitPanier'])) {
+
+
+            $nombreProduit = $_GET['nomProduitPanier'];
+            $idProduit = $_GET['idProduitPanier'];
+            $quantiteDisponible = $_GET['quantiteProduitPanier'];
+            $prix = $_GET['prixProduitPanier'];
+            $quantiSele = $_POST['quantiteSelectione'];
+
+
+            // echo $nombreProduit . "</br>";
+            // echo $idProduit  . "</br>";
+            // echo $quantiteDisponible . "</br>";
+            // echo $prix . "</br>";
+            // echo "Quantite :  " . $quantite;
+
+            addList($nombreProduit, $idProduit,$quantiteDisponible,$prix, $quantiSele );
+            afficherPanier();
+
+        } else {
+            echo "error";
+        }
+    }
+     else {
+        afficherProduits();
+    }
+    /********************************/
+} else {
+    afficherProduits();
+}
+
+
+
+        <button onclick="location.href='indexPanier.php'">Modifier</button>
+        <button onclick="location.href='indexPanier.php?action=supprimerItemPanier'">Supprimer</button>
+
+
+
+*******************************************************************************************
+
+ACTUALIZACION LUNES 11 / 14 // 2022  9:50 pm  CONTROLEUR
+
+
+<!-- mi controlador va a buscar el modelo y enviar los datos a la vista -->
+<?php
+//requiere() va y busca una pagina como hacer copy paste de la pagina modele.
+//includ busca codigo html en otra pagina
+// require("modeles/modele.php");
+require_once("Modeles/ProduitManager.php");
+require_once("Modeles/PanierManager.php");
+
+
+//******************************   PRODUITS  ****************************/
+
+function afficherProduits()
+{
+    $produitManager = new ProduitManager();
+    $requete = $produitManager->getProduits();
+
+    require("vues/vueProduits.php");
+}
+
+function afficherProduit($idProduit)
+{
+    $bproduitManager = new ProduitManager();
+    $requete = $bproduitManager->getProduit($idProduit);
+    require("vues/vueProduit.php");
+}
+
+//******************************   PANIER  ****************************/
+
+function afficherPanier()
+{
+    $produitManager = new PanierManager();
+    $requete = $produitManager->getPanier();
+
+    if ($requete->rowCount() > 0) {
+        require("vues/vuePanier.php");
+    } else {
+        require("vues/erreurPanier.php");
+    }
+}
+
+// function erreurPanier()
+// {
+//     require("vues/erreurPanier.php");
+// }
+
+//addList($nombreProduit, $idProduit,$quantiteDisponible,$prix, $quantiSele );
+function addList($nombreProduit, $idProd, $quantiteDisponible, $prixP, $quantSelect)
+{
+    $nomPr = $nombreProduit;
+    $idProduit = intval($idProd);
+    $quantDispo = intval($quantiteDisponible);
+    $price = intval($prixP);
+    $quantiSelec = intval($quantSelect);
+    $prixTotal = $quantiSelec * $price;
+
+    $panierManager = new PanierManager();
+    $requete = $panierManager->ajouterPanier($nomPr, $idProduit, $quantDispo, $price, $quantiSelec, $prixTotal);
+
+    // echo "Nom : ". $nomPr . "</br>";
+    // echo gettype($nomPr). "</br>";
+
+    //echo "ID : " .$idProduit  . "</br>";
+    // echo gettype($idProduit). "</br>";
+
+    // echo "Quanti dispo : " .$quantDispo . "</br>";
+    // echo gettype($quantDispo). "</br>";
+
+    // echo "Prix : ".$price . "</br>";
+    // echo gettype($price). "</br>";
+
+    // echo "Quantite :  " . $quantiSelec . "</br>";;
+    // echo gettype($quantiSelec). "</br>";
+
+    // echo "Quantite :  " . $prixTotal . "</br>";;
+    // echo gettype($prixTotal) . "</br>";
+
+    require("vues/vuePanier.php");
+}
+
+function effacerPanier($idProduitSupprimer,$idPanierSupprim){
+    
+}
+
+
+****************************************************************************************
+
+ECO VERIFICATION VALEURS DE LA ACTION MODIFIERPANIER
+
+        echo "idProduit : " . $idProdModif. "</br>";
+        echo gettype($idProdModif). "</br>"; 
+        echo "idPanier : " . $idPanierModif. "</br>";
+        echo gettype($idPanierModif). "</br>"; 
+        echo "quantiModif : " . $quantiModif. "</br>";
+        echo gettype($quantiModif). "</br>"; 
+        echo "quantiteProduit : " . $quantiteProduit. "</br>";
+        echo gettype($quantiteProduit). "</br>"; 
+
+
+*****************************************************
+
+    if (($quantiModif > 0) || ($quantiModif != "") || ($quantiModif != null) || ($quantiModif != NAN)){
+
+        modifierPanierAchat($idProdModif,$idPanierModif,$quantiModif,$quantiteProduit);
+
+        afficherPanier();
+    }
+
+    else {
+        echo "Aucun valeur a ete insere pour modifier";
+    }
+
+
+    echo "idProduitModifier : " . $idProduitModifier . "</br>";
+    echo gettype($idProduitModifier) . "</br>";
+    echo "idPanierModifier : " . $idPanierModifier . "</br>";
+    echo gettype($idPanierModifier) . "</br>";
+    echo "quantiModifier : " . $quantiModifier . "</br>";
+    echo gettype($quantiModifier) . "</br>";
+    echo "quantiteDisponible : " . $quantiteDisponible . "</br>";
+    echo gettype($quantiteDisponible) . "</br>";
+
+
