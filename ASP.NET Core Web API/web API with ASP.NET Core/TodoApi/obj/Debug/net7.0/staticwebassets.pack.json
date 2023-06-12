@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Nelson\\Dropbox\\PC\\Desktop\\personal and academic projects\\ASP.NET Core Web API\\web API with ASP.NET Core\\TodoApi\\wwwroot\\CSS\\site.css",
+      "PackagePath": "staticwebassets\\CSS\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\Nelson\\Dropbox\\PC\\Desktop\\personal and academic projects\\ASP.NET Core Web API\\web API with ASP.NET Core\\TodoApi\\wwwroot\\JS\\site.js",
+      "PackagePath": "staticwebassets\\JS\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\Nelson\\Dropbox\\PC\\Desktop\\personal and academic projects\\ASP.NET Core Web API\\web API with ASP.NET Core\\TodoApi\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.TodoApi.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.TodoApi.props",
+      "PackagePath": "build\\TodoApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.TodoApi.props",
+      "PackagePath": "buildMultiTargeting\\TodoApi.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.TodoApi.props",
+      "PackagePath": "buildTransitive\\TodoApi.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
