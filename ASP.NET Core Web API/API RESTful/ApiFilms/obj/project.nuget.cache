@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "vijrwDadAY3k8A1cWk94m2fuUB2TxOdREuJbShd+rBU6LigvvRTs6avRx4iZq+Huy3zIvB+SV7kE2brF8HIckA==",
+  "dgSpecHash": "inYpazyvaO+OeiL8HPuCCx5IlNmm+4fXTxmYEhzAFs9OntQbIPKufp6RVzuzlJhNqY/BsvKECWKlqwNMZ0madw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nelson\\Dropbox\\PC\\Desktop\\personal and academic projects\\ASP.NET Core Web API\\API RESTful\\ApiFilms\\ApiFilms.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nelson\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\Nelson\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\Nelson\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Nelson\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Nelson\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

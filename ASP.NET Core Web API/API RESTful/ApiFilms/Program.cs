@@ -1,5 +1,9 @@
 using ApiFilms.Data;
+using ApiFilms.Respository;
+using ApiFilms.Respository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using ApiFilms.FilmsMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionSql"));
 });
+// Add repos
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+//Add AutoMapper
+builder.Services.AddAutoMapper(typeof(FilmsMapper));
 
 // Add services to the container.
 
