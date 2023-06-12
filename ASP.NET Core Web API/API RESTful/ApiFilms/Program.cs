@@ -1,4 +1,13 @@
+using ApiFilms.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+//Config SQL servec connection
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionSql"));
+});
 
 // Add services to the container.
 
