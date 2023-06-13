@@ -6,8 +6,9 @@ namespace ApiFilms.Models.Dtos
     {
         public int Id { get; set; }
 
+        //Model Requirements 
         [Required(ErrorMessage = "The name is mantatory")]
-        [MaxLength(60, ErrorMessage = "Max 100 characters !!!")]
+        [MaxLength(100, ErrorMessage = "Max 100 characters !!!")]
         public string Name { get; set; }
 
     }
