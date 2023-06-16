@@ -15,5 +15,6 @@ namespace ApiFilms.Respository.IRepository
         bool UpdateCategory(Category category);
         bool DeleteCategory(Category category);
         bool Save();
+
     }
 }
