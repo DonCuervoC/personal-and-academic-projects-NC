@@ -93,5 +93,29 @@ namespace ApiFilms.Controllers
             return CreatedAtRoute("GetFilm", new { filmId = film.Id }, film);
         }
 
+        [HttpPatch("{filmId:int}", Name = "UpdatePatchFilm")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        // arguments : category id, JSON and DTO (Category) Object.
+        public IActionResult UpdatePatchFilm(int filmId, [FromBody] FilmDto filmDto)
+        {
+            // check all DTO model requirements (CategoryDto.cs)
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var film = _mapper.Map<Film>(filmDto);
+            // If the category could not be created
+            if (!_filmRepo.UpdateFilm(film))
+            {
+                ModelState.AddModelError("", $"Something went wrong while updating the record {film.Name}!");
+                return StatusCode(500, ModelState);
+            }
+            // Create a new source.
+            return NoContent();
+        }
+
     }
 }
