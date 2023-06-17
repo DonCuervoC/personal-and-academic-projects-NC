@@ -1,4 +1,5 @@
-﻿using ApiFilms.Models.Dtos;
+﻿using ApiFilms.Models;
+using ApiFilms.Models.Dtos;
 using ApiFilms.Respository.IRepository;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
@@ -54,6 +55,43 @@ namespace ApiFilms.Controllers
             return Ok(itemFilmDto);
         }
 
+        [HttpPost]
+        [ProducesResponseType(201, Type = typeof(FilmDto))]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        // arguments : JSON and DTO (Film) Object.
+        public IActionResult CreateFilm([FromBody] FilmDto filmDto)
+        {
+            // check all DTO model requirements (FilmDto.cs)
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (filmDto == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // if finds duplicity
+            if (_filmRepo.ExistFilm(filmDto.Name))
+            {
+                ModelState.AddModelError("", "The Film already exists!");
+                return StatusCode(404, ModelState);
+            }
+
+            var film = _mapper.Map<Film>(filmDto);
+            // If the Film could not be created
+            if (!_filmRepo.CreateFilm(film))
+            {
+                ModelState.AddModelError("", $"Something went wrong while saving the record {film.Name}!");
+                return StatusCode(500, ModelState);
+            }
+            // Create a new source.
+            return CreatedAtRoute("GetFilm", new { filmId = film.Id }, film);
+        }
 
     }
 }
