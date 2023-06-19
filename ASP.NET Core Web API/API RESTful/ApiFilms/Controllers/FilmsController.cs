@@ -142,6 +142,45 @@ namespace ApiFilms.Controllers
             return NoContent();
         }
 
+        [HttpGet("GetFilmsInCategory/{categoryId:int}")]
+        public IActionResult GetFilmsInCategory(int categoryId)
+        {
+            var listFilms = _filmRepo.GetFilmsInCategory(categoryId);
+
+            if (listFilms == null)
+            {
+                return NotFound();
+            }
+
+            var itemFilm = new List<FilmDto>();
+
+            foreach (var item in listFilms)
+            {
+                itemFilm.Add(_mapper.Map<FilmDto>(item));
+            }
+            return Ok(itemFilm);
+        }
+
+        [HttpGet("FindFilm")]
+        public IActionResult FindFilm(string name)
+        {
+            try
+            {
+                var result = _filmRepo.FindFilm(name.Trim());
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+
+                return NotFound();
+            }
+            catch (Exception )
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error while recovering data");
+            }
+
+        }
+
 
     }
 }
