@@ -12,5 +12,6 @@ namespace ApiFilms.Data
         // ADD models here
         public DbSet<Category> Category { get; set; }
         public DbSet<Film> Film { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }
