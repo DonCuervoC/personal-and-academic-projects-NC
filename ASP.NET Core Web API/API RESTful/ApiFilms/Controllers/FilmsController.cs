@@ -97,7 +97,7 @@ namespace ApiFilms.Controllers
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        // arguments : category id, JSON and DTO (Category) Object.
+        // arguments : Film id, JSON and DTO (Film) Object.
         public IActionResult UpdatePatchFilm(int filmId, [FromBody] FilmDto filmDto)
         {
             // check all DTO model requirements (CategoryDto.cs)
@@ -116,6 +116,32 @@ namespace ApiFilms.Controllers
             // Create a new source.
             return NoContent();
         }
+
+        [HttpDelete("{filmId:int}", Name = "DeleteFilm")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        // arguments : Film id, JSON and DTO (Film) Object.
+        public IActionResult DeleteFilm(int filmId)
+        {
+            // if not found
+            if (!_filmRepo.ExistFilm(filmId))
+            {
+                return NotFound();
+            }
+
+            var film = _filmRepo.GetFilm(filmId);
+            // If the category could not be created
+            if (!_filmRepo.DeleteFilm(film))
+            {
+                ModelState.AddModelError("", $"Something went wrong while deleting the record {film.Name}!");
+                return StatusCode(500, ModelState);
+            }
+            // Create a new source.
+            return NoContent();
+        }
+
 
     }
 }
