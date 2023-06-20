@@ -93,5 +93,33 @@ namespace ApiFilms.Controllers
         }
 
 
+        [HttpPost("Login")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        // arguments : JSON and DTO (User) Object.
+        public async Task<IActionResult> Login([FromBody] UserLoginDto userLoginDto)
+        {
+            var responseLogin = await _usRepo.Login(userLoginDto);
+
+
+            if (responseLogin.User == null || string.IsNullOrEmpty(responseLogin.Token))
+            {
+                _responseApi.StatusCode = HttpStatusCode.BadRequest;
+                _responseApi.IsSuccess = false;
+                _responseApi.ErrorMessages.Add("The username or password are incorrect!");
+                return BadRequest(_responseApi);
+            }
+
+
+            _responseApi.StatusCode = HttpStatusCode.OK;
+            _responseApi.IsSuccess = true;
+            _responseApi.Result = responseLogin;
+
+            return Ok(_responseApi);
+
+        }
+
+
     }
 }
