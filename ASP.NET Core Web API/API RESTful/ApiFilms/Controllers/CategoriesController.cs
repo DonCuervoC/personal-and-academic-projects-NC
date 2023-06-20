@@ -61,7 +61,7 @@ namespace ApiFilms.Controllers
 
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(CategoryDto))]
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         // arguments : JSON and DTO (Category) Object.
