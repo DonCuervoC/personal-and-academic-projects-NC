@@ -76,3 +76,5 @@ C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core W
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms\obj\Debug\net7.0\ref\ApiFilms.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms\bin\Debug\net7.0\AutoMapper.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms\bin\Debug\net7.0\Microsoft.Practices.ServiceLocation.dll
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms\bin\Debug\net7.0\XAct.Core.PCL.dll
