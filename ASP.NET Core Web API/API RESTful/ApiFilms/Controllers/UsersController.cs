@@ -2,6 +2,7 @@
 using ApiFilms.Models.Dtos;
 using ApiFilms.Respository.IRepository;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -23,10 +24,12 @@ namespace ApiFilms.Controllers
             this._responseApi = new (); // initialized as dependency injection
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public IActionResult GetUserss()
+        public IActionResult GetUsers()
         {
             var listUsers = _usRepo.GetUsers();
 
@@ -39,10 +42,12 @@ namespace ApiFilms.Controllers
             return Ok(listUsersDto);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet("{userId:int}", Name = "GetUser")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetUser(int userId)
         {
@@ -58,6 +63,7 @@ namespace ApiFilms.Controllers
             return Ok(itemUserDto);
         }
 
+        [AllowAnonymous]
         [HttpPost("Register")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -92,7 +98,7 @@ namespace ApiFilms.Controllers
 
         }
 
-
+        [AllowAnonymous]
         [HttpPost("Login")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

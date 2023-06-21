@@ -2,6 +2,7 @@
 using ApiFilms.Models.Dtos;
 using ApiFilms.Respository.IRepository;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,7 @@ namespace ApiFilms.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -36,6 +38,7 @@ namespace ApiFilms.Controllers
             return Ok(listFilmDto);
         }
 
+        [AllowAnonymous]
         [HttpGet("{filmId:int}", Name = "GetFilm")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -55,10 +58,12 @@ namespace ApiFilms.Controllers
             return Ok(itemFilmDto);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ProducesResponseType(201, Type = typeof(FilmDto))]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         // arguments : JSON and DTO (Film) Object.
@@ -93,9 +98,11 @@ namespace ApiFilms.Controllers
             return CreatedAtRoute("GetFilm", new { filmId = film.Id }, film);
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPatch("{filmId:int}", Name = "UpdatePatchFilm")]
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         // arguments : Film id, JSON and DTO (Film) Object.
         public IActionResult UpdatePatchFilm(int filmId, [FromBody] FilmDto filmDto)
@@ -117,11 +124,13 @@ namespace ApiFilms.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("{filmId:int}", Name = "DeleteFilm")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         // arguments : Film id, JSON and DTO (Film) Object.
         public IActionResult DeleteFilm(int filmId)
         {
@@ -142,6 +151,7 @@ namespace ApiFilms.Controllers
             return NoContent();
         }
 
+        [AllowAnonymous]
         [HttpGet("GetFilmsInCategory/{categoryId:int}")]
         public IActionResult GetFilmsInCategory(int categoryId)
         {
@@ -161,6 +171,7 @@ namespace ApiFilms.Controllers
             return Ok(itemFilm);
         }
 
+        [AllowAnonymous]
         [HttpGet("FindFilm")]
         public IActionResult FindFilm(string name)
         {
