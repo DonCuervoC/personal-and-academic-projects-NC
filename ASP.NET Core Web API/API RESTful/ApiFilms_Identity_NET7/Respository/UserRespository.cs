@@ -2,6 +2,8 @@
 using ApiFilms.Models;
 using ApiFilms.Models.Dtos;
 using ApiFilms.Respository.IRepository;
+using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -16,25 +18,32 @@ namespace ApiFilms.Respository
         private readonly ApplicationDbContext _db;
         private string secretKey;
 
-        public UserRespository(ApplicationDbContext db, IConfiguration config)
+        private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IMapper _mapper;
+
+        public UserRespository(ApplicationDbContext db, IConfiguration config, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IMapper mapper)
         {
             _db = db;
             secretKey = config.GetValue<string>("ApiSettings:Secret");
+            _roleManager = roleManager;
+            _userManager = userManager;
+            _mapper = mapper;
         }
 
-        public User GetUser(int userId)
+        public AppUser GetUser(string userId)
         {
-            return _db.User.FirstOrDefault(u => u.Id == userId);
+            return _db.AppUser.FirstOrDefault(u => u.Id == userId);
         }
 
-        public ICollection<User> GetUsers()
+        public ICollection<AppUser> GetUsers()
         {
-            return _db.User.OrderBy(u => u.UserName).ToList();
+            return _db.AppUser.OrderBy(u => u.UserName).ToList();
         }
 
         public bool IsUniqueUser(string user)
         {
-            var userDb = _db.User.FirstOrDefault(u => u.UserName == user);
+            var userDb = _db.AppUser.FirstOrDefault(u => u.UserName == user);
 
             if (userDb == null)
             {
@@ -70,14 +79,17 @@ namespace ApiFilms.Respository
 
         public async Task<UserLoginResponseDto> Login(UserLoginDto userLoginDto)
         {
-            var passwordEncrypted = getMd5(userLoginDto.Password);
+            //var passwordEncrypted = getMd5(userLoginDto.Password);
+            /*var user = _db.AppUser.FirstOrDefault(
+              u => u.UserName.ToLower() == userLoginDto.UserName.ToLower()
+              && u.Password == passwordEncrypted
+              ); */
 
-            var user = _db.User.FirstOrDefault(
-                u => u.UserName.ToLower() == userLoginDto.UserName.ToLower()
-                && u.Password == passwordEncrypted
-                );
+            var user = _db.AppUser.FirstOrDefault( u => u.UserName.ToLower() == userLoginDto.UserName.ToLower());
 
-            if (user == null)
+            bool isValid = await _userManager.CheckPasswordAsync(user, userLoginDto.Password);
+
+            if (user == null || isValid == false)
             {
                 return new UserLoginResponseDto()
                 {
@@ -86,12 +98,11 @@ namespace ApiFilms.Respository
                 };
             }
 
+            //User exist, we can process the login
+            var roles = await _userManager.GetRolesAsync(user);
+
             var handleToken = new JwtSecurityTokenHandler();
-
             var key = Encoding.ASCII.GetBytes(secretKey);
-
-            //var signingKey = new SymmetricSecurityKey(key);
-            //var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
@@ -99,10 +110,9 @@ namespace ApiFilms.Respository
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, user.UserName.ToString()),
-                    new Claim(ClaimTypes.Role, user.Role),
+                    new Claim(ClaimTypes.Role, roles.FirstOrDefault()),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
-                //SigningCredentials = signingCredentials
                 SigningCredentials = new(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
@@ -111,7 +121,7 @@ namespace ApiFilms.Respository
             UserLoginResponseDto userLoginResponseDto = new UserLoginResponseDto()
             {
                 Token = handleToken.WriteToken(token),
-                User = user,
+                User = _mapper.Map<UserDataDto>(user)
             };
 
             return userLoginResponseDto;

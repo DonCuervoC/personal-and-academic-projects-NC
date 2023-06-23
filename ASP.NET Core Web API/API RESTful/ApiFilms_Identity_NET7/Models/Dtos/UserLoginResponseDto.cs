@@ -4,7 +4,7 @@
      * Para obtener todos los datos utilizamos este Dto */
     public class UserLoginResponseDto
     {
-        public User User { get; set; }
+        public UserDataDto User { get; set; }
         public string Token { get; set; }
     }
 }
