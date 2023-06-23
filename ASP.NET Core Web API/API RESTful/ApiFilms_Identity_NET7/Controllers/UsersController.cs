@@ -43,13 +43,13 @@ namespace ApiFilms.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        [HttpGet("{userId:int}", Name = "GetUser")]
+        [HttpGet("{userId}", Name = "GetUser")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetUser(int userId)
+        public IActionResult GetUser(string userId)
         {
             var itemUser = _usRepo.GetUser(userId);
 

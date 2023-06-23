@@ -82,7 +82,10 @@ namespace ApiFilms.Respository
                     await _roleManager.CreateAsync(new IdentityRole("registered"));
                 }
 
-                await _userManager.AddToRoleAsync(user, "admin");
+                // Only for users I decided to make admin => Uncomente next line "admin" and coment "registered" 
+                //await _userManager.AddToRoleAsync(user, "admin");
+                await _userManager.AddToRoleAsync(user, "registered");
+
                 var userReturned = _db.AppUser.FirstOrDefault(u => u.UserName == userRegisterDto.UserName);
 
                 //Option1
