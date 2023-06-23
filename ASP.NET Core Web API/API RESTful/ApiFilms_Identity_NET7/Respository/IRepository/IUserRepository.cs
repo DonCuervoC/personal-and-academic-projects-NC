@@ -15,7 +15,6 @@ namespace ApiFilms.Respository.IRepository
         //Specifies that the method is asynchronous and returns a task. A task represents an asynchronous operation that can return a result in the future.
         Task<UserLoginResponseDto> Login(UserLoginDto userLoginDto);
 
-        //Task<User> Register(UserRegisterDto userRegisterDto);
         Task<UserDataDto> Register(UserRegisterDto userRegisterDto);
 
 

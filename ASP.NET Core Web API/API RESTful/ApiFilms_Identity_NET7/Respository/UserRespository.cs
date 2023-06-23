@@ -53,27 +53,54 @@ namespace ApiFilms.Respository
 
         }
 
-        public async Task<User> Register(UserRegisterDto userRegisterDto)
+        public async Task<UserDataDto> Register(UserRegisterDto userRegisterDto)
         {
 
-            var passwordEncrypted = getMd5(userRegisterDto.Password);
+           // var passwordEncrypted = getMd5(userRegisterDto.Password);
 
-            User user = new User()
+            AppUser user = new AppUser()
             {
                 UserName = userRegisterDto.UserName,
-                Password = passwordEncrypted,
-                Name = userRegisterDto.Name,
-                Role = userRegisterDto.Role
+                Email = userRegisterDto.UserName,
+                NormalizedEmail = userRegisterDto.UserName.ToUpper(),
+                Name = userRegisterDto.Name
             };
 
+            /*
             _db.User.Add(user);
-
             await _db.SaveChangesAsync();
-
             user.Password = passwordEncrypted;
+            return user; */
 
-            return user;
+            var result = await _userManager.CreateAsync(user, userRegisterDto.Password);
+            if(result.Succeeded)
+            {
+                //Only first time and is for create roles
+                if(!_roleManager.RoleExistsAsync("admin").GetAwaiter().GetResult())
+                {
+                    await _roleManager.CreateAsync(new IdentityRole("admin"));
+                    await _roleManager.CreateAsync(new IdentityRole("registered"));
+                }
 
+                await _userManager.AddToRoleAsync(user, "admin");
+                var userReturned = _db.AppUser.FirstOrDefault(u => u.UserName == userRegisterDto.UserName);
+
+                //Option1
+                /*
+                return new UserDataDto()
+                {
+                    Id = userReturned.Id,
+                    UserName = userReturned.UserName,
+                    Name = userReturned.Name
+                };
+                */
+
+                //Option2
+                return _mapper.Map<UserDataDto>(userReturned);
+
+            }
+
+            return new UserDataDto();
         }
 
 
@@ -125,10 +152,10 @@ namespace ApiFilms.Respository
             };
 
             return userLoginResponseDto;
-
         }
 
         //Methode to encrypte password with MD5, its used in acces as in Register.
+        /*
         private string getMd5(string value)
         {
 
@@ -143,7 +170,7 @@ namespace ApiFilms.Respository
             for (int i = 0; i < data.Length; i++)  // loops through each byte in the data array, converts each byte to its lowercase hexadecimal representation, and adds it to the string resp
                 resp += data[i].ToString("x2").ToLower();
 
-            return resp; // Return the final result, which is the MD5 hash as a string
-        }
+            return resp; // Return the final result, which is the MD5 hash as a string  
+        } */
     }
 }
