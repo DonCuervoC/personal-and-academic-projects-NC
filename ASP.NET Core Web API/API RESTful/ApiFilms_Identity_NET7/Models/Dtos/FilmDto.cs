@@ -15,7 +15,7 @@ namespace ApiFilms.Models.Dtos
         [Required(ErrorMessage = "The name is mantatory")]
         public string Name { get; set; }
 
-        public string FilmPath { get; set; }
+        public byte[] FilmPath { get; set; }
 
         [Required(ErrorMessage = "The description is mantatory")]
         public string Description { get; set; }

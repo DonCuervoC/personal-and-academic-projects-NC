@@ -113,7 +113,7 @@ namespace ApiFilms.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Category", (string)null);
                 });
 
             modelBuilder.Entity("ApiFilms.Models.Film", b =>
@@ -149,7 +149,7 @@ namespace ApiFilms.Migrations
 
                     b.HasIndex("categoryId");
 
-                    b.ToTable("Film");
+                    b.ToTable("Film", (string)null);
                 });
 
             modelBuilder.Entity("ApiFilms.Models.User", b =>
@@ -174,7 +174,7 @@ namespace ApiFilms.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
