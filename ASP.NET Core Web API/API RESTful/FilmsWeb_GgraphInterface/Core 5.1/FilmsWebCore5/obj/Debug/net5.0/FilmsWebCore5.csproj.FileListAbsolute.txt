@@ -359,3 +359,4 @@ C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core W
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\obj\Debug\net5.0\FilmsWebCore5.pdb
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\obj\Debug\net5.0\FilmsWebCore5.genruntimeconfig.cache
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\obj\Debug\net5.0\ref\FilmsWebCore5.dll
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\bin\Debug\net5.0\Newtonsoft.Json.dll
