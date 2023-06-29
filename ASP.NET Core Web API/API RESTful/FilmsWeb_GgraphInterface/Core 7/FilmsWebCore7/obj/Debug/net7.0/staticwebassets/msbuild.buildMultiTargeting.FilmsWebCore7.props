@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\FilmsWebCore7.props" />
+</Project>

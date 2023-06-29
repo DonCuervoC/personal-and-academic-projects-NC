@@ -93,6 +93,9 @@ C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core W
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Practices.ServiceLocation.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Humanizer.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Data.SqlClient.dll
@@ -102,6 +105,9 @@ C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core W
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Extensions.Options.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Identity.Client.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll
@@ -160,9 +166,3 @@ C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core W
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\obj\Debug\net7.0\ApiFilms.pdb
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\obj\Debug\net7.0\ApiFilms.genruntimeconfig.cache
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\obj\Debug\net7.0\ref\ApiFilms.dll
-C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.Internal.dll
-C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Extensions.Identity.Core.dll
-C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Extensions.Identity.Stores.dll
-C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\ApiFilms_Identity_NET7\bin\Debug\net7.0\Microsoft.Extensions.Options.dll

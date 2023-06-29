@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "LJ/fCWInIyJ+7B2zQuIGhx+XuPjAdXK2xkZMN9m5I1ZbDIclpRVfpvf9rtHBxQjS+LsEWP+XOoRgAlOgrr+sVA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Nelson\\Dropbox\\PC\\Desktop\\personal and academic projects\\ASP.NET Core Web API\\API RESTful\\FilmsWeb_GgraphInterface\\Core 7\\FilmsWebCore7\\FilmsWebCore7.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Nelson\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
