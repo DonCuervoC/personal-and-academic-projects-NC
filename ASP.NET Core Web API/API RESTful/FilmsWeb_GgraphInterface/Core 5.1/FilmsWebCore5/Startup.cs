@@ -1,3 +1,5 @@
+using FilmsWebCore5.Repository;
+using FilmsWebCore5.Repository.IRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +28,11 @@ namespace FilmsWebCore5
             services.AddControllersWithViews();
             // Add HTTP CALLS ***
             services.AddHttpClient();
+
+            // Add services as dependency injection
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IFilmRepository, FilmRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,9 +1,18 @@
+using FilmsWebCore5.Repository;
+using FilmsWebCore5.Repository.IRepository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 // Add HTTP CALLS ***
 builder.Services.AddHttpClient();
+
+// Add repos
+// Add services as dependency injection
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IFilmRepository, FilmRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 //CORS Support
 // Se puede habiliar : 1-Un dominio, 2-multiples dominios, 3- cualquier dominio (Tener en cuenta la seguridad)
