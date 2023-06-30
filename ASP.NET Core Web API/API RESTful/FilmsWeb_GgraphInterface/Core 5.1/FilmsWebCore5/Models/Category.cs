@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
+using Newtonsoft.Json;
 
 namespace FilmsWebCore5.Models
 {
@@ -10,6 +11,7 @@ namespace FilmsWebCore5.Models
         [Required(ErrorMessage ="Name is mandatory")]
         public string Name { get; set; }
 
+        [JsonProperty("DateCreation")]
         public DateTime DateCreation { get; set; }
 
     }

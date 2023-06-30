@@ -1,6 +1,8 @@
 ﻿using FilmsWebCore5.Repository.IRepository;
 using Newtonsoft.Json;
 using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -112,10 +114,11 @@ namespace FilmsWebCore5.Repository
             else { return null; }
         }
 
+
         public async Task<IEnumerable> GetAllAsync(string url)
         {
             // Concatenate url + Id to know what will be the source to get (LIST).
-            var req = new HttpRequestMessage(HttpMethod.Get, url );
+            var req = new HttpRequestMessage(HttpMethod.Get, url);
 
             var client = _httpClientFactory.CreateClient();
 
@@ -127,10 +130,11 @@ namespace FilmsWebCore5.Repository
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
 
-                return JsonConvert.DeserializeObject<IEnumerable>(jsonString); // Because its a List (IEnumerable)
+                return JsonConvert.DeserializeObject<IEnumerable<T>>(jsonString); // Because its a List (IEnumerable)
             }
             else { return null; }
         }
+
 
 
 
