@@ -406,3 +406,5 @@ C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core W
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\bin\Debug\net5.0\runtimes\win-arm\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\bin\Debug\net5.0\runtimes\win-arm64\lib\net5.0\dotnet-aspnet-codegenerator-design.exe
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\obj\Debug\net5.0\Razor\Views\Categories\Index.cshtml.g.cs
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\obj\Debug\net5.0\Razor\Views\Categories\Create.cshtml.g.cs
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\obj\Debug\net5.0\Razor\Views\Categories\Edit.cshtml.g.cs

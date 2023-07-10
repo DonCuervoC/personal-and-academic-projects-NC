@@ -11,7 +11,7 @@ namespace FilmsWebCore5.Models
         [Required(ErrorMessage ="Name is mandatory")]
         public string Name { get; set; }
 
-        [JsonProperty("DateCreation")]
+        //[JsonProperty("DateCreation")]
         public DateTime DateCreation { get; set; }
 
     }

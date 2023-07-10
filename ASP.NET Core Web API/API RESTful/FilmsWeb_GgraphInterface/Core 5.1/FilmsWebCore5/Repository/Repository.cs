@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,14 +20,16 @@ namespace FilmsWebCore5.Repository
             _httpClientFactory = httpClientFactory;
         }
 
+
         public async Task<bool> UpdateAsync(string url, T itemToUpdate)
         {
+
             var req = new HttpRequestMessage(HttpMethod.Patch, url);
 
             if (itemToUpdate != null)
             {
                 req.Content = new StringContent(
-                    JsonConvert.SerializeObject(itemToUpdate), Encoding.UTF8, "application/json"         
+                    JsonConvert.SerializeObject(itemToUpdate), Encoding.UTF8, "application/json"
                     );
             }
             else
@@ -46,6 +49,8 @@ namespace FilmsWebCore5.Repository
             }
             else { return false; }
         }
+
+
 
         public async Task<bool> DeleteAsync(string url, int Id)
         {
@@ -96,8 +101,10 @@ namespace FilmsWebCore5.Repository
 
         public async Task<T> GetAsync(string url, int Id)
         {
+            var request = url + "/"+Id;
             // Concatenate url + Id to know what will be the source to get.
-            var req = new HttpRequestMessage(HttpMethod.Get, url + Id);
+            //var req = new HttpRequestMessage(HttpMethod.Get, url + Id);
+            var req = new HttpRequestMessage(HttpMethod.Get, url + "/" + Id);
 
             var client = _httpClientFactory.CreateClient();
 
@@ -129,7 +136,6 @@ namespace FilmsWebCore5.Repository
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var jsonString = await response.Content.ReadAsStringAsync();
-
                 return JsonConvert.DeserializeObject<IEnumerable<T>>(jsonString); // Because its a List (IEnumerable)
             }
             else { return null; }

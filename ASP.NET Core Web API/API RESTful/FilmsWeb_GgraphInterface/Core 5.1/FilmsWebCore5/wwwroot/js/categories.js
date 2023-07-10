@@ -3,9 +3,7 @@
 //load all document
 $(document).ready(function () {
     loadDataTable();
-
 });
-
 
 function loadDataTable() {
     dataTable = $('#tblCategories').DataTable({
@@ -36,12 +34,10 @@ function loadDataTable() {
         ]
     });
 
-    //dataTable.on('draw.dt', function () {
-    //    console.log(dataTable.ajax.json()); // Imprimir la respuesta en la consola
-    //});
-
+    dataTable.on('draw.dt', function () {
+        console.log(dataTable.ajax.json()); // Imprimir la respuesta en la consola
+    });
 }
-
 
 function Delete(url) {
     swal({

@@ -11,5 +11,7 @@ namespace ApiFilms.Models.Dtos
         [MaxLength(100, ErrorMessage = "Max 100 characters !!!")]
         public string Name { get; set; }
 
+        public DateTime DateCreation { get; set; }
+
     }
 }
