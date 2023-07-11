@@ -2,6 +2,7 @@
 using FilmsWebCore5.Repository.IRepository;
 using FilmsWebCore5.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using System;
 using System.Threading.Tasks;
 
@@ -60,7 +61,6 @@ namespace FilmsWebCore5.Controllers
                 return NotFound();
             }
 
-            //itemCategory = await _categoryRepository.GetAsync(CT.RouteCategoriesApi, id.GetValueOrDefault());
             itemCategory = await _categoryRepository.GetAsync(CT.RouteCategoriesApi, id.GetValueOrDefault());
 
             if (itemCategory == null)
@@ -76,18 +76,28 @@ namespace FilmsWebCore5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update (Category category)
         {
-
-
             if (ModelState.IsValid)
             {
             //https://localhost:7153/api/categories/8
                 await _categoryRepository.UpdateAsync(CT.RouteCategoriesApi + "/" + category.Id , category);
                 return RedirectToAction(nameof(Index));
             }
-
             return View();
         }
 
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+           // var monURL = CT.RouteCategoriesApi + "/" + id;
+            var status = await _categoryRepository.DeleteAsync(CT.RouteCategoriesApi , id);
+
+            if (status)
+            {
+
+                return Json(new { success = true, message = "Deleted OK" });
+            }
+            return Json(new { success = false, message = "Something went wrong while deleting" });
+        }
 
 
     }

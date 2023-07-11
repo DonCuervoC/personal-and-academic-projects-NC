@@ -55,7 +55,9 @@ namespace FilmsWebCore5.Repository
         public async Task<bool> DeleteAsync(string url, int Id)
         {
             // Concatenate url + Id to know what will be the source to delete.
-            var req = new HttpRequestMessage(HttpMethod.Delete, url + Id);
+            var req = new HttpRequestMessage(HttpMethod.Delete, url + "/" + Id);
+
+            var monURL = url;
 
             var client = _httpClientFactory.CreateClient();
 
