@@ -50,8 +50,6 @@ namespace FilmsWebCore5.Repository
             else { return false; }
         }
 
-
-
         public async Task<bool> DeleteAsync(string url, int Id)
         {
             // Concatenate url + Id to know what will be the source to delete.
@@ -71,7 +69,6 @@ namespace FilmsWebCore5.Repository
             }
             else { return false; }
         }
-
 
         public async Task<bool> CreateAsync(string url, T itemToCreate)
         {
@@ -123,7 +120,6 @@ namespace FilmsWebCore5.Repository
             else { return null; }
         }
 
-
         public async Task<IEnumerable> GetAllAsync(string url)
         {
             // Concatenate url + Id to know what will be the source to get (LIST).
@@ -143,9 +139,42 @@ namespace FilmsWebCore5.Repository
             else { return null; }
         }
 
+        public async Task<IEnumerable> GetFilmsInCategoryAsync(string url, int categoryID)
+        {
+            // Concatenate url + Id to know what will be the source to get (LIST).
+            var req = new HttpRequestMessage(HttpMethod.Get, url + categoryID);
 
+            var client = _httpClientFactory.CreateClient();
 
+            HttpResponseMessage response = await client.SendAsync(req);
 
+            // Validate if found information and return data
+            // if 204 OK(GET)
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<IEnumerable<T>>(jsonString); // Because its a List (IEnumerable)
+            }
+            else { return null; }
+        }
 
+        public async Task<IEnumerable> Find(string url, string name)
+        {
+            // Concatenate url + Id to know what will be the source to get (LIST).
+            var req = new HttpRequestMessage(HttpMethod.Get, url + name);
+
+            var client = _httpClientFactory.CreateClient();
+
+            HttpResponseMessage response = await client.SendAsync(req);
+
+            // Validate if found information and return data
+            // if 204 OK(GET)
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<IEnumerable<T>>(jsonString); // Because its a List (IEnumerable)
+            }
+            else { return null; }
+        }
     }
 }

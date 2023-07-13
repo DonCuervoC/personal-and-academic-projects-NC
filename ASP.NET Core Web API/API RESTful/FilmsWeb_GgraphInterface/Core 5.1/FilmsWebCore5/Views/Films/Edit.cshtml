@@ -1,0 +1,139 @@
+﻿@model FilmsWebCore5.Models.ViewModels.FilmsVM
+@{
+    ViewData["Title"] = "Edit a film";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-primary">Edit a film</h2>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <div class="row">
+        <div class="col-sm-12">
+            @*//Method create from CategoriesController , enctype to let upload image to server*@
+            <form method="post" asp-action="Update" enctype="multipart/form-data">
+
+               @* Get ID from model (to pass it to the function)*@
+                <input type="hidden" asp-for="Film.Id" />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Film.Name"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Film.Name" class="form-control" />
+                        <span asp-validation-for="Film.Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Film.Description"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Film.Description" class="form-control" />
+                        <span asp-validation-for="Film.Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Film.Classification"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Film.Classification" asp-items="Html.GetEnumSelectList<Film.ClassificationType>()" class="form-control">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Film.Duration"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Film.Duration" class="form-control" />
+                        <span asp-validation-for="Film.Duration" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- here the list of categories is loaded -->
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Film.Category"></label>
+                    </div>
+                    <div class="col-8">
+                        @Html.DropDownListFor(c => c.Film.categoryId,
+                        Model.ListCategories, "-Please select a category-", new { @class = "form-control"})
+                        <span asp-validation-for="Film.categoryId" class="text-danger"></span>
+                    </div>
+                </div>
+                <!-- here the photo loader -->
+                <div class="form-group row">
+                    <div class="col-4">
+                        @* <label asp-for="Film.FilmPath"></label>*@
+                        <label for="Image"> Image</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="file" asp-for="Film.FilmPath" class="form-control" name="files" />
+                        <span asp-validation-for="Film.FilmPath" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!-- here the image is loaded -->
+                <div class="col-4 text-right" style="width:250px">
+                    @if(Model.Film.FilmPath != null)
+                    {
+                        // Convert the binary data to a Base64 string
+                        var base64 = Convert.ToBase64String(Model.Film.FilmPath);
+                        // Create the image source URL with the Base64 string
+                        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                        // Display the image using the generated source URL
+                        // src I need the variable to be interpreted in the razor views, for this I put the @ from net core.
+                        <img src="@imgsrc" width="100%" />
+                    }
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-4">
+                        <label asp-for="Film.CreationDate"> Creation date</label>
+                    </div>
+                    <div class="col-8">
+                        <input id="DateCreation" asp-for="Film.CreationDate" type="text" class="form-control" readonly />
+                        @*<span asp-validation-for="DateCreation" class="text-danger"></span> *@
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary form-control">Edit film</button>
+                    </div>
+
+                    <div class="col">
+                        <a asp-action="Index">Back</a>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    <script>
+        $(function () {
+            $("#DateCreation").datepicker({
+                changeMonth: false,
+                changeYear: false,
+                yearRange: "1500:2023",
+                dateFormat: "yy-mm-dd"
+            }).datepicker("setDate", new Date())
+        })
+    </script>
+}
+

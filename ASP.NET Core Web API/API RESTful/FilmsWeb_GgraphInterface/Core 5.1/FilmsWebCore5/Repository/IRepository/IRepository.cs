@@ -8,6 +8,10 @@ namespace FilmsWebCore5.Repository.IRepository
     {
         //list 
         Task<IEnumerable> GetAllAsync(string url);
+        //Method to filter films in a category
+        Task<IEnumerable> GetFilmsInCategoryAsync(string url, int categoryID);
+        //Method to find by name
+        Task<IEnumerable> Find(string url, string name);
         //films, category etc...
         Task<T> GetAsync(string url, int Id);
         //Create category, films etc..

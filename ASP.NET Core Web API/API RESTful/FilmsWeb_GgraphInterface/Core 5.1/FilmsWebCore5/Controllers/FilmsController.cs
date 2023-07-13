@@ -55,7 +55,7 @@ namespace FilmsWebCore5.Controllers
                     Value = i.Id.ToString()
                 }),
                 // instance model Film
-                Film = new Film() 
+                Film = new Film()
             };
 
             return View(objectVM);
@@ -114,52 +114,97 @@ namespace FilmsWebCore5.Controllers
         [HttpGet] //From view Edith
         public async Task<IActionResult> Edit(int? id)
         {
-            Category itemCategory = new Category();
+            IEnumerable<Category> npList = (IEnumerable<Category>)await _categoryRepository.GetAllAsync(CT.RouteCategoriesApi);
+            // bring category list and film model
+            FilmsVM objectVM = new FilmsVM()
+            {
+                // get category list
+                ListCategories = npList.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                }),
+                // instance model Film
+                Film = new Film()
+            };
 
             if (id == null)
             {
-                Console.WriteLine("ID is null");
                 return NotFound();
             }
 
-            itemCategory = await _categoryRepository.GetAsync(CT.RouteCategoriesApi, id.GetValueOrDefault());
-
-            if (itemCategory == null)
+            //To show data in the form Edit // get data from id
+            objectVM.Film = await _filmRepository.GetAsync(CT.RouteFilmsApi, id.GetValueOrDefault());
+            if (objectVM.Film == null)
             {
-                Console.WriteLine("Category not found");
                 return NotFound();
             }
 
-            return View(itemCategory);
+            return View(objectVM);
+
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update (Category category)
+        public async Task<IActionResult> Update(Film film)
         {
+            // if model is OK
             if (ModelState.IsValid)
             {
-            //https://localhost:7153/api/categories/8
-                await _categoryRepository.UpdateAsync(CT.RouteCategoriesApi + "/" + category.Id , category);
+                var files = HttpContext.Request.Form.Files;
+                // if a file was uploaded
+                if (files.Count > 0)
+                {
+                    byte[] p1 = null;
+                    //open a layer that let us get the file and save it in memory
+                    using (var fs1 = files[0].OpenReadStream())
+                    {
+                        using (var ms1 = new MemoryStream())
+                        {
+                            // copy file that was in fs1 in position 0 of array
+                            fs1.CopyTo(ms1);
+                            // byte p1  was in null, now its going to be ms1 value
+                            p1 = ms1.ToArray();
+                        }
+                    }
+                    film.FilmPath = p1;
+                }
+                else
+                {
+                    var filmFromDb = await _filmRepository.GetAsync(CT.RouteFilmsApi, film.Id);
+                    // upload image and update it if thats the case
+                    film.FilmPath = filmFromDb.FilmPath;
+                }
+
+                //await _categoryRepository.UpdateAsync(CT.RouteCategoriesApi + "/" + category.Id, category);
+                //return RedirectToAction(nameof(Index));
+                await _filmRepository.UpdateAsync(CT.RouteFilmsApi + "/" + film.Id, film);
                 return RedirectToAction(nameof(Index));
             }
+            // if error return same view
             return View();
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
-           // var monURL = CT.RouteCategoriesApi + "/" + id;
-            var status = await _categoryRepository.DeleteAsync(CT.RouteCategoriesApi , id);
+            // var monURL = CT.RouteCategoriesApi + "/" + id;
+            var status = await _filmRepository.DeleteAsync(CT.RouteFilmsApi, id);
 
             if (status)
             {
-
                 return Json(new { success = true, message = "Deleted OK" });
             }
             return Json(new { success = false, message = "Something went wrong while deleting" });
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetFilmsInCategory(int id)
+        {
+            return Json(new { data = await _filmRepository.GetFilmsInCategoryAsync(CT.RouteFilmsInCategoryApi, id) });
+        }
+
+        
 
     }
 }

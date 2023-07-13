@@ -10,5 +10,9 @@ namespace FilmsWebCore5.Utils
         public static string RouteUsersApi = UrlBaseApi + "api/users";
 
         // Add more routes to find and filter films by category
+        // https://localhost:7153/api/films/GetFilmsInCategory/1
+        public static string RouteFilmsInCategoryApi = UrlBaseApi + "api/GetFilmsInCategory/";
+        // https://localhost:7153/api/films/FindFilm?name=evil
+        public static string RouteFilmsApiFind = UrlBaseApi + "api/films/FindFilm?name=";
     }
 }
