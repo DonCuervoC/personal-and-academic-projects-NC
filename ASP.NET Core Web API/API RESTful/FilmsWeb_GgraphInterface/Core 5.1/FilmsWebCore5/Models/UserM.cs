@@ -10,10 +10,11 @@ namespace FilmsWebCore5.Models
         public string UserName { get; set; }
 
         public string Name { get; set; }
-        [Required(ErrorMessage = "User name is mandatory")]
+        [Required(ErrorMessage = "Password is mandatory")]
         [StringLength(10, MinimumLength = 4, ErrorMessage = "Password must be between 4 and 10 characters")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Confirm password is mandatory")]
         public string Password2 { get; set; }
 
         public string Token { get; set; }

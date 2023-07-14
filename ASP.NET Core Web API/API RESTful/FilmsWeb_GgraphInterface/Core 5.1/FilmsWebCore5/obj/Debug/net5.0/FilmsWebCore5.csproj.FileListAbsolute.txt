@@ -412,3 +412,4 @@ C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core W
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\obj\Debug\net5.0\Razor\Views\Films\Create.cshtml.g.cs
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\obj\Debug\net5.0\Razor\Views\Films\Edit.cshtml.g.cs
 C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\obj\Debug\net5.0\Razor\Views\Users\Index.cshtml.g.cs
+C:\Users\Nelson\Dropbox\PC\Desktop\personal and academic projects\ASP.NET Core Web API\API RESTful\FilmsWeb_GgraphInterface\Core 5.1\FilmsWebCore5\obj\Debug\net5.0\Razor\Views\Home\Login.cshtml.g.cs

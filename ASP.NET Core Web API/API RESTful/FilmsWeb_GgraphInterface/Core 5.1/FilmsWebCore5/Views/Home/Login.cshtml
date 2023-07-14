@@ -1,0 +1,36 @@
+﻿@model FilmsWebCore5.Models.UserM
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Users access</h1>
+
+<div class="row">
+
+    <div class="col-sm-6 offset-3">
+        <form asp-action="Login"></form>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label for="User">User : </label>
+            <input type="text" asp-for="UserName" class="form-control" placeholder="Enter your username" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Password">Password : </label>
+            <input type="password" asp-for="Password" class="form-control" placeholder="Enter your password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Password">Confirm password : </label>
+            <input type="password" asp-for="Password2" class="form-control" placeholder="Confirm password" />
+            <span asp-validation-for="Password2" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100"> SEND</button>
+
+    </div>
+</div>

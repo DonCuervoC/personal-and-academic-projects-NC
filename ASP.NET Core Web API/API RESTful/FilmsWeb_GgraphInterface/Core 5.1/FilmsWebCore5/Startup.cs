@@ -1,5 +1,6 @@
 using FilmsWebCore5.Repository;
 using FilmsWebCore5.Repository.IRepository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +26,17 @@ namespace FilmsWebCore5
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Authentication
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options =>
+                {
+                    options.Cookie.HttpOnly = true;
+                    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                    options.LoginPath = "/Home/Login";
+                    options.AccessDeniedPath = "/Home/AccessDenied";
+                    options.SlidingExpiration = true;
+                });
+
             services.AddControllersWithViews();
             // Add HTTP CALLS ***
             services.AddHttpClient();
@@ -34,6 +46,14 @@ namespace FilmsWebCore5
             services.AddScoped<IFilmRepository, FilmRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+
+            // Session config
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +78,10 @@ namespace FilmsWebCore5
             app.UseCors(
                 x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
                 );
+
+            //SESSION & AUTHENTICATION JWT ***
+            app.UseSession();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
