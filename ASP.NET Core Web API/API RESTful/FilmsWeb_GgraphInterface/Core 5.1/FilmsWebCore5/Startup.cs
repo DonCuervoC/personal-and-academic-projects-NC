@@ -33,6 +33,7 @@ namespace FilmsWebCore5
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IFilmRepository, FilmRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
